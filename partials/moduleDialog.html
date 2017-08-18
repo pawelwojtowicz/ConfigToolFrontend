@@ -1,0 +1,24 @@
+<md-dialog aria-label="Module" style="width: 500px;">
+    <md-dialog-content class="mat-button">
+            <md-input-container>
+                    <label>Module name</label>
+                    <input ng-model="vm.name" type="text"></input>
+            </md-input-container><br/>
+            <md-input-container>
+                    <label>Module Description</label>
+                    <input ng-model="vm.description" type="text"></input>
+            </md-input-container>
+        </md-dialog-content>
+    <md-dialog-actions class="mat-dialog-actions">
+        <md-button class="mat-button" ng-click="vm.addNewModule()">
+            <span class="mat-button-wrapper">Option 1</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+        <md-button class="mat-button">
+            <span class="mat-button-wrapper">Option 2</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
