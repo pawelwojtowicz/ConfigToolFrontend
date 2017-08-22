@@ -110,8 +110,9 @@ module.exports = function(grunt) {
         'output/js/angular-route.min.js.map': 'angular-route/angular-route.min.js.map',
         'output/js/angular-material.min.js':'angular-material/angular-material.min.js',
         'output/js/angular-animate.min.js':'angular-animate/angular-animate.min.js',
+        'output/js/angular-aria.min.js':'angular-aria/angular-aria.min.js',
         'output/css/angular-material.min.css':'angular-material/angular-material.min.css',
-        'output/css/app.css':'css/app.css'
+        'output/css/app.css':'../css/app.css'
       }
       },
       deploy: {
