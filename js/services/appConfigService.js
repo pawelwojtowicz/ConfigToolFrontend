@@ -2,7 +2,7 @@
 'use strict';
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.service("appConfig", [function($http) {
+configurationApp.service("appConfig", [function() {
 
     var vm =this;
     

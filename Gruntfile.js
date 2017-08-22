@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +  '<%= grunt.template.today("yyyy-mm-dd") %> */'
       },
       all: {
-        src: ['js/controllers/*.js','js/services/*.js','js/app.js','intermediate/template.js'],
+        src: ['js/app.js','js/services/*.js','js/controllers/*.js','intermediate/template.js'],
         dest: 'intermediate/concatenatedApp.js',
       }
     },
@@ -107,13 +107,22 @@ module.exports = function(grunt) {
         'output/js/angular.min.js':'angular/angular.min.js',
         'output/js/angular.min.js.map':'angular/angular.min.js.map',
         'output/js/angular-route.min.js': 'angular-route/angular-route.min.js',
-        'output/js/angular-route.min.js.map': 'angular-route/angular-route.min.js.map'
-        }
+        'output/js/angular-route.min.js.map': 'angular-route/angular-route.min.js.map',
+        'output/js/angular-material.min.js':'angular-material/angular-material.min.js',
+        'output/js/angular-animate.min.js':'angular-animate/angular-animate.min.js',
+        'output/css/angular-material.min.css':'angular-material/angular-material.min.css',
+        'output/css/app.css':'css/app.css'
+      }
       },
       deploy: {
         files: {
           'output/js/angular.min.js':'angular/angular.min.js',
-          'output/js/angular-route.min.js': 'angular-route/angular-route.min.js'
+          'output/js/angular-route.min.js': 'angular-route/angular-route.min.js',
+          'output/js/angular-material.min.js':'angular-material/angular-material.min.js',
+          'output/js/angular-animate.min.js':'angular-animate/angular-animate.min.js',
+          'output/js/angular-aria.min.js':'angular-aria/angular-aria.min.js',
+          'output/css/angular-material.min.css':'angular-material/angular-material.min.css',
+          'output/css/app.css':'../css/app.css'
         }
       }  
     },
@@ -171,7 +180,7 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('buildDebug', ['htmlhint','jshint','ngtemplates','concat','uglify:debug','cssmin', 'string-replace','npmcopy:debug'] );
   grunt.registerTask('debug', ['buildDebug','run:serverWin','watch'] );
-  grunt.registerTask('deploy', [/**'htmlhint',*/'jshint','ngtemplates','concat','uglify:deploy','cssmin','htmlmin','npmcopy:deploy'] );
+  grunt.registerTask('deploy', ['htmlhint','jshint','ngtemplates','concat','uglify:deploy','cssmin','htmlmin','npmcopy:deploy'] );
   grunt.registerTask('default', ['deploy']);
   grunt.registerTask('cleanup', ['clean']);
 };

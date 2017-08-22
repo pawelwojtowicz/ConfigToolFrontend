@@ -10,11 +10,11 @@ configurationApp.controller('templateDialogController',['$scope',
                                                         'templateRestrictionService',
                                                         function( $scope , templateService , templateDependencyService, templateRestrictionService)
                                                         **/
-configurationApp.controller('templateDialogController',['templateService',
-                                                        function(  templateService )
+configurationApp.controller('templateDialogController',['selectedTemplateId','templateService',
+                                                        function( selectedTemplateId, templateService )
                                                         {
 		var vm = this;
-    vm.templateId = 0;
+    vm.templateId = selectedTemplateId;
 		vm.templateName = "";
 		vm.templateDescription = "";
     vm.templateOwnerId = 0;

@@ -1,14 +1,25 @@
 <md-dialog aria-label="Module" style="width: 500px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+        <h2>Add Module</h2>
+        <span flex=""></span>
+<!--        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button> -->
+        </div>
+    </md-toolbar>
     <md-dialog-content class="mat-button">
+        <span flex="">
             <md-input-container>
                     <label>Module name</label>
-                    <input ng-model="vm.name" type="text"></input>
+                    <input ng-model="vm.name" type="text"/>
             </md-input-container><br/>
             <md-input-container>
                     <label>Module Description</label>
-                    <input ng-model="vm.description" type="text"></input>
+                    <input ng-model="vm.description" type="text"/>
             </md-input-container>
-        </md-dialog-content>
+        </span>    
+    </md-dialog-content>
     <md-dialog-actions class="mat-dialog-actions">
         <md-button class="mat-button" ng-click="vm.addNewModule()">
             <span class="mat-button-wrapper">Option 1</span>

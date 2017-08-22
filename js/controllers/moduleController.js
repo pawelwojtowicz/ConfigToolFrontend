@@ -10,7 +10,7 @@ configurationApp.controller('moduleController',['$scope','moduleService', '$mdDi
 		vm.name = "";
 		vm.description = "";
 
-		vm.modulesList = []
+		vm.modulesList = [];
 		
 		vm.notifyModuleListChanged = function( moduleList) {
 			vm.modulesList = moduleList;
@@ -34,6 +34,15 @@ configurationApp.controller('moduleController',['$scope','moduleService', '$mdDi
 		vm.showDialog = function() {
 			return $mdDialog.show({
 				templateUrl: 'partials/moduleDialog.html',
+				controller: function() { return vm;},
+				controllerAs: 'vm',
+				//targetEvent: ev,
+				clickOutsideToClose: true
+			  });
+		};
+		vm.showDialog2 = function() {
+			return $mdDialog.show({
+				templateUrl: 'partials/templateDialog.html',
 				controller: function() { return vm;},
 				controllerAs: 'vm',
 				//targetEvent: ev,

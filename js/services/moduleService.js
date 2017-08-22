@@ -13,7 +13,7 @@ configurationApp.service("moduleService", ['$http', 'appConfig', function($http,
             	method: "POST",
             	data: newModule,
             	headers: {'Content-Type': 'application/json'}
-        	}).then( function( response) { vm.getAllModules() } );
+        	}).then( function( response) { vm.getAllModules(); } );
 	};
 
 	
