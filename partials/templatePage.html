@@ -1,0 +1,20 @@
+<div>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>ID</td><td>Name</td><td>Description</td><td>ownerId</td><td>TemplateStatus</td><td>Licensed</td><td>Actions</td>
+        </tr>
+        <tr ng-repeat="templateItem in vm.templateList">
+            <td>{{templateItem.templateId}}</td>
+            <td>{{templateItem.name}}</td>
+            <td>{{templateItem.description}}</td>
+            <td>{{templateItem.ownerId}}</td>
+            <td>{{templateItem.templateStatus}}</td>
+            <td>{{templateItem.licensed}}</td>
+            <td>
+              <button ng-click="vm.updateTemplate(templateItem.templateId)">Modify</button>
+              <button ng-click="vm.deleteTemplate(templateItem.templateId)">Delete</button>
+            </td>
+        </tr>
+    </table>
+    <md-button class="md-primary md-raised" ng-click="vm.addNewTemplate()">Add new template</md-button>
+</div>
