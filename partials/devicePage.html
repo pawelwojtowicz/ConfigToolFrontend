@@ -1,0 +1,11 @@
+<div>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Name</td><td>Description</td><td>Actions</td>
+        </tr>
+        <tr ng-repeat="deviceInfo in vm.deviceList">
+            <td>{{deviceInfo.name}}</td><td>{{deviceInfo.description}}</td><td><button>Modify</button><button ng-click="vm.deleteDevice(deviceInfo.deviceId)">Delete</button></td>
+        </tr>
+    </table>
+    <md-button class="md-primary md-raised" ng-click="vm.showDialog()">Add device</md-button>
+</div>

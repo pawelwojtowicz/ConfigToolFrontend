@@ -14,7 +14,10 @@ module.exports = function(grunt) {
     },
 //-----javascript hint --------------------------------------------------
     jshint: {
-      all: ['*.js','js/services/*.js','js/controllers/*.js']
+      all: ['*.js','js/services/*.js','js/controllers/*.js'],
+	  options: {
+		"esversion": 6
+		}
     },
 //-----file concatenation -----------------------------------------------    
     concat: {

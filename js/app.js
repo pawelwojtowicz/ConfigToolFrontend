@@ -12,7 +12,13 @@ configurationFrontend.config(['$routeProvider',
 		    controllerAs: 'vm',
 		    bindToController: true,
 		    replace: true      }).
-      when('/templatepage', {
+        when('/devicepage', {
+          templateUrl: 'partials/devicePage.html',
+          controller: 'deviceController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        when('/templatepage', {
         templateUrl: 'partials/templatePage.html',
         controller: 'templateController',
     		controllerAs: 'vm',

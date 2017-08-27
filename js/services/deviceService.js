@@ -2,16 +2,15 @@
 'use strict';
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.service("moduleService", ['$http', 'appConfig', '$q' ,function($http,appConfig, $q) {
+configurationApp.service("deviceService", ['$http', 'appConfig', '$q' ,function($http,appConfig, $q) {
 	var vm = this;
-	vm.url = appConfig.getServiceUrl() + "/modules";
-	vm.moduleUpdateCallbacks = [];
+	vm.url = appConfig.getServiceUrl() + "/devices";
 
-	vm.addModule = function (newModule ) {
+	vm.addDevice = function (newDevice ) {
 		return $q(function( resolve, reject ){
 			$http({	url: vm.url,
             		method: "POST",
-            		data: newModule,
+            		data: newDevice,
             		headers: {'Content-Type': 'application/json'}}).then (
 					function( response) {
 						resolve();
@@ -23,7 +22,7 @@ configurationApp.service("moduleService", ['$http', 'appConfig', '$q' ,function(
 	};
 
 	
-	vm.getAllModules = function() {
+	vm.getAllDevices = function() {
 		return $q( function(resolve, reject) {
 			$http.get(vm.url).then( function( response) {
 				resolve(response.data);
@@ -34,8 +33,8 @@ configurationApp.service("moduleService", ['$http', 'appConfig', '$q' ,function(
 	};	
 
 		
-	vm.deleteModule = function( moduleId) {
-		var urlForDeleting = vm.url + "/" + String(moduleId);
+	vm.deleteDevice = function( deviceId) {
+		var urlForDeleting = vm.url + "/" + String(deviceId);
 		return $http.delete(urlForDeleting);
 	};
 	
