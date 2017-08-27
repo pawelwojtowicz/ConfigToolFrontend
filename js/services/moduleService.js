@@ -5,7 +5,7 @@ var configurationApp = angular.module('configurationApp');
 configurationApp.service("moduleService", ['$http', 'appConfig', function($http,appConfig) {
 	var vm = this;
 	vm.modules = [];
-	vm.url = "/modules";
+	vm.url = appConfig.getServiceUrl() + "/modules";
 	vm.moduleUpdateCallbacks = [];
 
 	vm.addModule = function (newModule ) {

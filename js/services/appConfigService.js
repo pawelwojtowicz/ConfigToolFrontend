@@ -10,7 +10,7 @@ configurationApp.service("appConfig", [function() {
     vm.port = "8080";
 	
 	this.getServiceUrl = function() {
-		return vm.ip+":"+vm.port;
+		return "http://"+vm.ip+":"+vm.port;
 	};	
 
 }]);
