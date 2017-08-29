@@ -6,11 +6,13 @@
     configurationApp.controller('moduleDialogController',['selectedModuleId','moduleService','$mdDialog',function( selectedModuleId , moduleService ,$mdDialog)
         {
             var vm = this;
+            vm.dialogTitle = "Add module";
             vm.moduleId = selectedModuleId;
             vm.name = "";
             vm.description = "";
 
             if ( 0 != vm.moduleId) {
+                vm.dialogTitle = "Modify module";
                 moduleService.getModuleById( vm.moduleId ).then(function( receivedModule ){
                     vm.name = receivedModule.name;
                     vm.description = receivedModule.description;
