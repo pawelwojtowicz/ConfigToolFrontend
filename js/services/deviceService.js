@@ -32,6 +32,16 @@ configurationApp.service("deviceService", ['$http', 'appConfig', '$q' ,function(
 		});
 	};	
 
+	vm.getDeviceById = function(deviceId) {
+		return $q( function(resolve, reject) {
+			var urlForSelection = vm.url + '/' + deviceId;
+			$http.get(urlForSelection).then( function( response) {
+				resolve(response.data);
+			},function(error) {
+				reject();
+			});
+		});
+	};	
 		
 	vm.deleteDevice = function( deviceId) {
 		var urlForDeleting = vm.url + "/" + String(deviceId);

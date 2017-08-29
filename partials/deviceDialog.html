@@ -1,7 +1,7 @@
 <md-dialog aria-label="Device" style="width: 500px;">
     <md-toolbar>
         <div class="md-toolbar-tools">
-        <h2>Add Device</h2>
+        <h2>{{vm.dialogTitle}}</h2>
         <span flex=""></span>
         </div>
     </md-toolbar>
@@ -15,7 +15,31 @@
                     <label>Device Description</label>
                     <input ng-model="vm.description" type="text"/>
             </md-input-container>
-        </span>    
+        </span>
+        <div layout="row" layout-xs="column">
+                <div flex="">
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="module in vm.deviceModules" ng-click="vm.selectDeviceModule($index)" ng-class="{selectedIndex: vm.selectedAvailableModule===$index}">
+                            <div class="md-list-item-text" layout="column">
+                                {{module.name }}
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <div>
+                    <button ng-click="vm.removeFronDeviceModules()">&#9654;&#9654;</button><br/>
+                    <button ng-click="vm.addModulesToDevice()">&#9664;&#9664;</button>
+                </div>
+                <div flex="">
+                    <md-list>
+                        <md-list-item class="md-3-line" ng-repeat="module in vm.availableModules" ng-click="vm.selectAvailableModule($index)" ng-class="{selectedIndex: vm.selectedAvailableModule===$index}">
+                            <div class="md-list-item-text" layout="column">
+                                {{module.name }}
+                            </div>
+                        </md-list-item>
+                    </md-list>        
+                </div>
+            </div>        
     </md-dialog-content>
     <md-dialog-actions class="mat-dialog-actions">
         <md-button class="mat-button" ng-click="vm.addNewDevice()">
@@ -23,7 +47,7 @@
             <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
             <div class="mat-button-focus-overlay"></div>
         </md-button>
-        <md-button class="mat-button">
+        <md-button class="mat-button" ng-click="vm.cancel()">
             <span class="mat-button-wrapper">Cancel</span>
             <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
             <div class="mat-button-focus-overlay"></div>

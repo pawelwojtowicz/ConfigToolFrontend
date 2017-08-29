@@ -37,10 +37,26 @@ configurationApp.controller('deviceController',['$scope','deviceService', '$mdDi
 		vm.showDialog = function() {
 			return $mdDialog.show({
 				templateUrl: 'partials/deviceDialog.html',
-				controller: function() { return vm;},
+				controller: 'deviceDialogController',
 				controllerAs: 'vm',
 				//targetEvent: ev,
-				clickOutsideToClose: true
+				clickOutsideToClose: true,
+				locals: {
+					selectedDeviceId: 0
+				}
+			  });
+		};
+
+		vm.showUpdateDialog = function( deviceId ) {
+			return $mdDialog.show({
+				templateUrl: 'partials/deviceDialog.html',
+				controller: 'deviceDialogController',
+				controllerAs: 'vm',
+				//targetEvent: ev,
+				clickOutsideToClose: true,
+				locals: {
+					selectedDeviceId: deviceId
+				}
 			  });
 		};
 	}]);
