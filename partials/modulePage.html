@@ -4,9 +4,8 @@
             <td>ID</td><td>Name</td><td>Description</td><td>deviceId</td><td>Actions</td>
         </tr>
         <tr ng-repeat="moduleInfo in vm.modulesList">
-            <td>{{moduleInfo.moduleId}}</td><td>{{moduleInfo.name}}</td><td>{{moduleInfo.description}}</td><td>{{ vm.findDeviceName(moduleInfo.deviceId) }}</td><td><button>Modify</button><button ng-click="vm.deleteModule(moduleInfo.moduleId)">Delete</button></td>
+            <td>{{moduleInfo.moduleId}}</td><td>{{moduleInfo.name}}</td><td>{{moduleInfo.description}}</td><td>{{ vm.findDeviceName(moduleInfo.deviceId) }}</td><td><button ng-click="vm.showUpdateDialog(moduleInfo.moduleId)">Modify</button><button ng-click="vm.deleteModule(moduleInfo.moduleId)">Delete</button></td>
         </tr>
     </table>
-    <md-button class="md-primary md-raised" ng-click="vm.showDialog()">Add module</md-button>
-    <md-button class="md-primary md-raised" ng-click="vm.showDialog2()">Add Boom</md-button>
+    <md-button class="md-primary md-raised" ng-click="vm.showAddDialog()">Add module</md-button>
 </div>

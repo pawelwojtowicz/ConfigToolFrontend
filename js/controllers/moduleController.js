@@ -8,31 +8,12 @@ configurationApp.controller('moduleController',['$scope','moduleService','device
 		var vm = this;
 		vm.name = "";
 		vm.description = "";
-		vm.deviceId = "";
 
 		vm.modulesList = [];
-		vm.deviceList = [];
-
-		deviceService.getAllDevices().then (function(deviceList) { 
-			vm.deviceList = deviceList;
-		});
 
 		moduleService.getAllModules().then(function( moduleList) { 
 			vm.modulesList = moduleList;
 		});
-
-		vm.findDeviceName = function ( deviceId )
-		{
-			var deviceName = "";
-			
-			vm.deviceList.forEach( function (deviceInfo) {
-				if (deviceInfo.deviceId === deviceId ) {
-					deviceName = deviceInfo.name;
-				}
-			});
-
-			return deviceName;
-		};
 
 		vm.addNewModule = function() {
 			var newModule = { "moduleId" : "0" , "name": vm.name,"description" : vm.description,"deviceId": vm.deviceId};
@@ -53,22 +34,28 @@ configurationApp.controller('moduleController',['$scope','moduleService','device
 			});
 		};
 
-		vm.showDialog = function() {
+		vm.showAddDialog = function() {
 			return $mdDialog.show({
 				templateUrl: 'partials/moduleDialog.html',
-				controller: function() { return vm;},
+				controller: 'moduleDialogController',
 				controllerAs: 'vm',
 				//targetEvent: ev,
-				clickOutsideToClose: true
+				clickOutsideToClose: true,
+				locals: {
+					selectedModuleId : 0	
+				}
 			  });
 		};
-		vm.showDialog2 = function() {
+		vm.showUpdateDialog = function( moduleId ) {
 			return $mdDialog.show({
-				templateUrl: 'partials/templateDialog.html',
-				controller: function() { return vm;},
+				templateUrl: 'partials/moduleDialog.html',
+				controller: 'moduleDialogController',
 				controllerAs: 'vm',
 				//targetEvent: ev,
-				clickOutsideToClose: true
+				clickOutsideToClose: true,
+				locals: {
+					selectedModuleId: moduleId
+				}
 			  });
 		};
 

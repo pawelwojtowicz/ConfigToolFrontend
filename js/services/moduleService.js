@@ -31,7 +31,18 @@ configurationApp.service("moduleService", ['$http', 'appConfig', '$q' ,function(
 				reject();
 			});
 		});
-	};	
+	};
+	
+	vm.getModuleById = function( moduleId ) {
+		return $q ( function( resolve, reject ) {
+			var requestUrl = vm.url+'/'+moduleId;
+			$http.get(requestUrl).then( function( response) {
+				resolve(response.data);
+			},function(error) {
+				reject( error );
+			});
+		});
+	};
 
 		
 	vm.deleteModule = function( moduleId) {

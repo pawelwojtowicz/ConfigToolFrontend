@@ -18,25 +18,16 @@
                     <label>Module Description</label>
                     <input ng-model="vm.description" type="text"/>
             </md-input-container><br/>
-            <md-input-container>
-                <label>Device</label>
-                <md-select ng-model="vm.deviceId">
-                  <md-option><em>None</em></md-option>
-                  <md-option ng-repeat="deviceInfo in vm.deviceList" ng-value="deviceInfo.deviceId">
-                    {{deviceInfo.name}}
-                  </md-option>
-                </md-select>
-              </md-input-container>
         </span>    
     </md-dialog-content>
     <md-dialog-actions class="mat-dialog-actions">
         <md-button class="mat-button" ng-click="vm.addNewModule()">
-            <span class="mat-button-wrapper">Option 1</span>
+            <span class="mat-button-wrapper">Add</span>
             <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
             <div class="mat-button-focus-overlay"></div>
         </md-button>
-        <md-button class="mat-button">
-            <span class="mat-button-wrapper">Option 2</span>
+        <md-button class="mat-button" ng-click="vm.cancel()">
+            <span class="mat-button-wrapper">Cancel</span>
             <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
             <div class="mat-button-focus-overlay"></div>
         </md-button>
