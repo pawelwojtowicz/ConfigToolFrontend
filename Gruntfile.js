@@ -14,7 +14,7 @@ module.exports = function(grunt) {
     },
 //-----javascript hint --------------------------------------------------
     jshint: {
-      all: ['*.js','js/services/*.js','js/controllers/*.js'],
+      all: ['*.js','js/services/*.js','js/controllers/*.js','js/filters/*.js'],
 	  options: {
 		"esversion": 6
 		}
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +  '<%= grunt.template.today("yyyy-mm-dd") %> */'
       },
       all: {
-        src: ['js/app.js','js/services/*.js','js/controllers/*.js','intermediate/template.js'],
+        src: ['js/app.js','js/services/*.js','js/controllers/*.js', 'js/filters/*.js', 'intermediate/template.js'],
         dest: 'intermediate/concatenatedApp.js',
       }
     },
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
         livereload: true,
       },
       all: {
-        files: ['index.html','css/*', 'js/*', 'partials/*' ],
+        files: ['index.html','css/*', 'js/**','partials/*' ],
         tasks: ['buildDebug'],
       }
     }
