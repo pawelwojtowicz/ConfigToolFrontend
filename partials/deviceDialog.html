@@ -19,7 +19,7 @@
         <div layout="row" layout-xs="column">
                 <div flex="">
                     <md-list>
-                        <md-list-item class="md-3-line" ng-repeat="module in vm.deviceModules" ng-click="vm.selectDeviceModule($index)" ng-class="{selectedIndex: vm.selectedDeviceModuleId===$index}">
+                        <md-list-item class="md-1-line" ng-repeat="module in vm.deviceModules" ng-click="vm.selectDeviceModule($index)" ng-class="{selectedIndex: vm.selectedDeviceModuleId===$index}">
                             <div class="md-list-item-text" layout="column">
                                 {{module.name }}
                             </div>
@@ -27,12 +27,12 @@
                     </md-list>
                 </div>
                 <div>
-                    <button ng-click="vm.removeFronDeviceModules()">&#9654;&#9654;</button><br/>
+                    <button ng-click="vm.removeFromDeviceModules()">&#9654;&#9654;</button><br/>
                     <button ng-click="vm.addModulesToDevice()">&#9664;&#9664;</button>
                 </div>
                 <div flex="">
                     <md-list>
-                        <md-list-item class="md-3-line" ng-repeat="module in vm.availableModules | removeElementsFrom : vm.deviceModules" ng-click="vm.selectAvailableModule(vm.availableModules.indexOf(module))" ng-class="{selectedIndex: vm.selectedAvailableModule===$index}">
+                        <md-list-item class="md-1-line" ng-repeat="module in vm.availableModules | removeElementsFrom : vm.deviceModules" ng-click="vm.selectAvailableModule(vm.availableModules.indexOf(module))" ng-class="{selectedIndex: vm.selectedAvailableModule===$index}">
                             <div class="md-list-item-text" layout="column">
                                 {{module.name }}
                             </div>
