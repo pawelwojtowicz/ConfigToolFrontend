@@ -24,7 +24,13 @@ configurationFrontend.config(['$routeProvider',
     		controllerAs: 'vm',
 		    bindToController: true,
 		    replace: true      }).
-      otherwise({
+        when('/configitempage', {
+          templateUrl: 'partials/configItemPage.html',
+          controller: 'configItemController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        otherwise({
         redirectTo: '/templatepage'
       });
   }]);

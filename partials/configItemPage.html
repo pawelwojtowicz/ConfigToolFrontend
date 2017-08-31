@@ -1,0 +1,19 @@
+<div>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Export type</td>
+            <td>Filename</td>
+            <td>Actions</td>
+        </tr>
+        <tr ng-repeat="configItem in vm.configItemList">
+            <td>{{configItem.name}}</td>
+            <td>{{configItem.description}}</td>
+            <td>{{configItem.exportType}}</td>
+            <td>{{configItem.fileName}}</td>
+            <td><button ng-click="vm.showUpdateDialog(configItem.configurationItemId)">Modify</button><button ng-click="vm.deleteConfigItem(configItem.configurationItemId)">Delete</button></td>
+        </tr>
+    </table>
+    <md-button class="md-primary md-raised" ng-click="vm.showAddDialog()">Add configuration item</md-button>
+</div>

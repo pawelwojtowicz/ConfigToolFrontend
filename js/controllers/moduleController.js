@@ -3,7 +3,7 @@
 
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.controller('moduleController',['$scope','moduleService','deviceService' ,'$mdDialog',function( $scope , moduleService ,deviceService ,$mdDialog)
+configurationApp.controller('moduleController',['$scope','moduleService','moduleConfigItemSetupService' ,'$mdDialog',function( $scope , moduleService ,moduleConfigItemSetupService ,$mdDialog)
 	{
 		var vm = this;
 		vm.name = "";
