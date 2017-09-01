@@ -8,7 +8,7 @@ configurationApp.service("moduleConfigItemSetupService", ['$http', 'appConfig', 
 
 	vm.addSetupEntity = function (setupEntity ) {
 		return $q(function( resolve, reject ){
-			var urlForRequest = vm.url + "/" + setupEntity.module + "/" + setupEntity.ConfigurationItemId;
+			var urlForRequest = vm.url + "/" + setupEntity.moduleId + "/" + setupEntity.configurationItemId;
 			console.log("such url" + urlForRequest);
 			$http({	url: urlForRequest,
             		method: "POST",
@@ -25,7 +25,7 @@ configurationApp.service("moduleConfigItemSetupService", ['$http', 'appConfig', 
 	
 	vm.removeSetupEntity = function (setupEntity ) {
 		return $q(function( resolve, reject ){
-			var urlForRequest = vm.url + "/" + setupEntity.module + "/" + setupEntity.ConfigurationItemId;
+			var urlForRequest = vm.url + "/" + setupEntity.moduleId + "/" + setupEntity.configurationItemId;
 			console.log("such url" + urlForRequest);
 			$http({	url: urlForRequest,
             		method: "DELETE",

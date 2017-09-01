@@ -21,24 +21,16 @@ configurationApp.controller('deviceDialogController',['selectedDeviceId','device
 			vm.name = deviceInfo.name;
 			vm.description = deviceInfo.description;
 			vm.deviceModules = deviceInfo.deviceModules;
-			moduleService.getAllModules().then(function( moduleList) { 
-				vm.availableModules = moduleList;
-				
-			});
-	
 		};
 
 
-
+		moduleService.getAllModules().then(function( moduleList) { 
+			vm.availableModules = moduleList;			
+		});
 		if ( 0!= vm.deviceId ) {
 			vm.dialogTitle = "Modify Device";
 			deviceService.getDeviceById(vm.deviceId).then( vm.updateDeviceInfo , function ( error ) {vm.description.toString();});		
 		}
-		else {
-			moduleService.getAllModules().then(function( moduleList) { 
-			vm.availableModules = moduleList;			
-		});
-}
 		
 		vm.addNewDevice = function() {
 			var newDevice = { 

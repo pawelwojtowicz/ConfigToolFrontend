@@ -1,11 +1,8 @@
 <md-dialog aria-label="Module" style="width: 500px;">
     <md-toolbar>
         <div class="md-toolbar-tools">
-        <h2>{{vm.dialogTitle}}</h2>
-        <span flex=""></span>
-<!--        <md-button class="md-icon-button" ng-click="cancel()">
-            <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
-        </md-button> -->
+            <h2>{{vm.dialogTitle}}</h2>
+            <span flex=""></span>
         </div>
     </md-toolbar>
     <md-dialog-content class="mat-button">
@@ -18,7 +15,31 @@
                     <label>Module Description</label>
                     <input ng-model="vm.description" type="text"/>
             </md-input-container><br/>
-        </span>    
+        </span>
+        <div layout="row" layout-xs="column" >
+            <div flex="">
+                <md-list>
+                    <md-list-item class="md-1-line" ng-repeat="moduleConfigItem in vm.moduleConfigItems" 
+                                                    ng-click="vm.selectModulesConfigItem($index)" 
+                                                    ng-class="{selectedIndex: vm.selectedModuleConfigItem===$index}">
+                        <div class="md-list-item-text" layout="column">{{moduleConfigItem.name}}</div>
+                    </md-list-item>
+                </md-list>
+            </div>
+            <div>
+                <button ng-click="vm.removeConfigItem()">&#9654;&#9654;</button><br/>
+                <button ng-click="vm.addConfigItem()">&#9664;&#9664;</button>
+            </div>
+            <div flex="">
+                <md-list>
+                    <md-list-item class="md-1-line" ng-repeat="configItem in vm.availableConfigItems | removeElementsFrom : vm.moduleConfigItems" 
+                                                    ng-click="vm.selectConfigItem(vm.availableConfigItems.indexOf(configItem))" 
+                                                    ng-class="{selectedIndex: vm.selectedConfigItem===$index}">
+                        <div class="md-list-item-text" layout="column">{{configItem.name}}</div>
+                    </md-list-item>
+                </md-list>        
+            </div>
+        </div>        
     </md-dialog-content>
     <md-dialog-actions class="mat-dialog-actions">
         <md-button class="mat-button" ng-click="vm.addNewModule()">
