@@ -1,0 +1,55 @@
+<md-dialog aria-label="Parameter" style="width: 500px;">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+            <h2>{{vm.dialogTitle}}</h2>
+            <span flex=""></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="mat-button">
+            <span flex="">
+                <md-input-container>
+                        <label>Parameter name</label>
+                        <input ng-model="vm.name" type="text"/>
+                </md-input-container>
+                <md-input-container>
+                        <label>Data type</label>
+                        <input ng-model="vm.type" type="text"/>
+                </md-input-container>
+                <md-input-container>
+                        <label>Default value</label>
+                        <input ng-model="vm.value" type="text"/>
+                </md-input-container><br/>
+                <md-input-container>
+                        <label>Parameter unit</label>
+                        <input ng-model="vm.unit" type="text"/>
+                </md-input-container><br/>
+                <md-input-container>
+                        <label>Parameter path</label>
+                        <input ng-model="vm.path" type="text"/>
+                </md-input-container>        
+                <md-input-container>
+                    <label>Config item</label>
+                    <md-select ng-model="vm.configItem">
+                        <md-option><em>None</em></md-option>
+                        <md-option ng-repeat="configItem in vm.availableConfigItems" ng-value="configItem">{{configItem.name}}</md-option>
+                    </md-select>
+                </md-input-container><br/>
+                <md-input-container>
+                        <label>Parameter description</label>
+                        <input ng-model="vm.description" type="text"/>
+                </md-input-container>
+            </span>    
+        </md-dialog-content>
+        <md-dialog-actions class="mat-dialog-actions">
+            <md-button class="mat-button" ng-click="vm.addNewParameter()">
+                <span class="mat-button-wrapper">Add</span>
+                <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+            </md-button>
+            <md-button class="mat-button" ng-click="vm.cancel()">
+                <span class="mat-button-wrapper">Cancel</span>
+                <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
+                <div class="mat-button-focus-overlay"></div>
+            </md-button>
+        </md-dialog-actions>
+    </md-dialog>

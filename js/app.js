@@ -30,6 +30,12 @@ configurationFrontend.config(['$routeProvider',
           controllerAs: 'vm',
           bindToController: true,
           replace: true      }).
+          when('/parameterpage', {
+            templateUrl: 'partials/parameterPage.html',
+            controller: 'parameterController',
+            controllerAs: 'vm',
+            bindToController: true,
+            replace: true      }).
         otherwise({
         redirectTo: '/templatepage'
       });

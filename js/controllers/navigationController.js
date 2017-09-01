@@ -6,10 +6,11 @@ configurationApp.controller('navigationController',['$scope','$location',functio
 	{
         var vm = this;
         vm.navigationMenu = [
-                             { buttonCaption: "Devices" , pageName: "devicepage"},
-                             { buttonCaption: "Modules" , pageName: "modulepage"},
+                             { buttonCaption: "Devices" ,      pageName: "devicepage"},
+                             { buttonCaption: "Modules" ,      pageName: "modulepage"},
                              { buttonCaption: "Config items" , pageName: "configitempage"},
-                             { buttonCaption: "Templates" , pageName: "templatepage"}
+                             { buttonCaption: "Templates" ,    pageName: "templatepage"},
+                             { buttonCaption: "Parameters",    pageName: "parameterpage"}
                             ];
         
         vm.goTo = function ( pageName ) {
