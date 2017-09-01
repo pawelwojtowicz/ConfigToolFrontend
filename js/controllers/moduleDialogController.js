@@ -12,7 +12,7 @@
             vm.description = "";
             vm.moduleConfigItems = [];
             vm.selectedModuleConfigItem = -1;
-            vm.availableConfigItems = [{configurationItemId: 10, name: "ConfigApp"}, {configurationItemId: 11, name: "DIO"},{configurationItemId: 12, name: "NetConfig"}];
+            vm.availableConfigItems = [];// [{configurationItemId: 10, name: "ConfigApp"}, {configurationItemId: 11, name: "DIO"},{configurationItemId: 12, name: "NetConfig"}];
             vm.selectedConfigItem = -1;
 
             configItemService.getAllConfigItems().then( function (configItems) {
@@ -39,6 +39,7 @@
                                   "name": vm.name,
                                   "description" : vm.description,
                                   "configItems": vm.moduleConfigItems };
+                                  console.log(JSON.stringify(newModule));
                 moduleService.addModule(newModule).then ( function() {
                     $mdDialog.cancel();
                 });
@@ -64,7 +65,7 @@
                 if (-1 !== vm.selectedModuleConfigItem) {
                     if ( 0 !== vm.moduleId) {
                         var setupEntity = { moduleId : vm.moduleId , configurationItemId : vm.moduleConfigItems[vm.selectedModuleConfigItem].configurationItemId};
-                        moduleConfigItemSetupService.removeSetupEntity().then( function() {
+                        moduleConfigItemSetupService.removeSetupEntity(setupEntity).then( function() {
                             moduleService.getModuleById( vm.moduleId ).then( vm.updateModuleDetails, function ( error ) {
                                 vm.name = error.toString();
                                 vm.description = "xxx";
@@ -85,7 +86,8 @@
                 if (-1 !== vm.selectedConfigItem) {
                     if ( 0 !== vm.moduleId ) {
                         var setupEntity = { moduleId : vm.moduleId , configurationItemId : vm.availableConfigItems[vm.selectedConfigItem].configurationItemId};
-                        moduleConfigItemSetupService.addSetupEntity().then( function() {
+                        console.log(" adding config item" + JSON.stringify(setupEntity));
+                        moduleConfigItemSetupService.addSetupEntity(setupEntity).then( function() {
                             moduleService.getModuleById( vm.moduleId ).then( vm.updateModuleDetails, function ( error ) {
                                 vm.name = error.toString();
                                 vm.description = "xxx";

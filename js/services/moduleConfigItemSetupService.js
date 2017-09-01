@@ -8,6 +8,7 @@ configurationApp.service("moduleConfigItemSetupService", ['$http', 'appConfig', 
 
 	vm.addSetupEntity = function (setupEntity ) {
 		return $q(function( resolve, reject ){
+			console.log("inside the service - ", JSON.stringify(setupEntity));
 			var urlForRequest = vm.url + "/" + setupEntity.moduleId + "/" + setupEntity.configurationItemId;
 			console.log("such url" + urlForRequest);
 			$http({	url: urlForRequest,
