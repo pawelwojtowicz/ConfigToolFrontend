@@ -21,17 +21,13 @@
         </md-toolbar>
         <div class="container" layout="row" flex>
             <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
-              <md-list>
-                <md-list-item>
-                  <md-button>Modules</md-button>     
-                </md-list-item>
-                <md-list-item>
-                  <md-button>Configuration types</md-button>     
-                </md-list-item>
-                <md-list-item>
-                  <md-button>Templates</md-button>     
-                </md-list-item>
-              </md-list>
+                <div ng-controller="navigationController as vm">
+                    <md-list>
+                        <md-list-item ng-repeat="navigationOption in vm.navigationMenu">
+                            <md-button ng-click="vm.goTo(navigationOption.pageName)">{{navigationOption.buttonCaption}}</md-button>     
+                        </md-list-item>
+                    </md-list>
+                </div>                
             </md-sidenav>
             <md-content id="content" flex>
                 <div ng-view></div>
