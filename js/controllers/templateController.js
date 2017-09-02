@@ -3,7 +3,7 @@
 
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.controller('templateController',['templateService', '$mdDialog',function( templateService ,$mdDialog)
+configurationApp.controller('templateController',['templateService', '$location',function( templateService ,$location)
 	{
 		var vm = this;
 
@@ -22,29 +22,15 @@ configurationApp.controller('templateController',['templateService', '$mdDialog'
 		};
 
 		vm.addNewTemplate = function() {
-    
-			return $mdDialog.show({
-				templateUrl: 'partials/templateDialog.html',
-				controller: 'templateDialogController',
-				controllerAs: 'vm',
-				//targetEvent: ev,
-				clickOutsideToClose: true,
-        locals: {
-          selectedTemplateId : 0
-        }
-			  });
+			vm.showTemplateEditView(0);	
 		};
     
 		vm.updateTemplate = function( templateId ) {
-			return $mdDialog.show({
-				templateUrl: 'partials/templateDialog.html',
-				controller: 'templateDialogController',
-				controllerAs: 'vm',
-				//targetEvent: ev,
-				clickOutsideToClose: true,
-        locals: {
-          selectedTemplateId : templateId}
-			  });
+			vm.showTemplateEditView(templateId);
+		};
+
+		vm.showTemplateEditView = function( templateId ) {
+			$location.url("/templateedit/"+ templateId);	
 		};
 
 	}]);

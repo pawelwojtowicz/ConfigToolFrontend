@@ -19,20 +19,26 @@ configurationFrontend.config(['$routeProvider',
           bindToController: true,
           replace: true      }).
         when('/templatepage', {
-        templateUrl: 'partials/templatePage.html',
-        controller: 'templateController',
-    		controllerAs: 'vm',
-		    bindToController: true,
-		    replace: true      }).
+          templateUrl: 'partials/templatePage.html',
+          controller: 'templateController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
         when('/configitempage', {
           templateUrl: 'partials/configItemPage.html',
           controller: 'configItemController',
           controllerAs: 'vm',
           bindToController: true,
           replace: true      }).
-          when('/parameterpage', {
-            templateUrl: 'partials/parameterPage.html',
-            controller: 'parameterController',
+        when('/parameterpage', {
+          templateUrl: 'partials/parameterPage.html',
+          controller: 'parameterController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        when('/templateedit/:templateId', {
+            templateUrl: 'partials/templateEdit.html',
+            controller: 'templateEditController',
             controllerAs: 'vm',
             bindToController: true,
             replace: true      }).
