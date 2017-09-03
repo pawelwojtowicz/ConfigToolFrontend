@@ -2,39 +2,53 @@
 'use strict';
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.service('templateService', [ '$http', function($http) {
+configurationApp.service('templateService', [ '$http', 'appConfig', '$q' ,function($http,appConfig, $q) {
 	var vm = this;
-
-
-	vm.templates = [];
-	vm.templateListUpdateCallbacks = [];
+	vm.url = appConfig.getServiceUrl() + "/template";
 
 	vm.addTemplate = function ( newTemplate ) {
-		vm.templates.push(newTemplate);
-		vm.notifyTemplateList(vm.templates);
+		console.log(JSON.stringify(newTemplate));
+		return $q(function( resolve, reject ){
+			$http({	url: vm.url,
+            		method: "POST",
+            		data: newTemplate,
+            		headers: {'Content-Type': 'application/json'}}).then (
+					function( response) {
+						resolve();
+					} , function ()
+					{
+						reject();
+					});
+				});
 	};
 
 	
 	vm.getAllTemplates = function() {
-		vm.notifyTemplateList(vm.templates);
-	};	
-
-		
-	vm.deleteTemplate = function( templateId) {
-	//	vm.templates = vm.templates.filter( item => item.templateId != templateId);
-		vm.notifyTemplateList(vm.templates);
-	};
-	
-	vm.notifyTemplateList = function ( templates ) {
-		var toBroadcast = templates;
-		vm.templateListUpdateCallbacks.forEach( function( clbk ) {
-			clbk(toBroadcast);
+		return $q( function(resolve, reject) {
+			$http.get(vm.url).then( function( response) {
+				console.log(JSON.stringify(response.data));
+				resolve(response.data);
+			},function(error) {
+				reject();
+			});
 		});
 	};
 
-	vm.registerTemplateListListener = function( templateListener) {
-		vm.templateListUpdateCallbacks.push(templateListener);
+	vm.getTemplateById = function( templateId) {
+		return $q ( function( resolve, reject ) {
+			var requestUrl = vm.url+'/'+templateId;
+			$http.get(requestUrl).then( function( response) {
+				resolve(response.data);
+			},function(error) {
+				reject( error );
+			});
+		});
 	};
 
+		
+	vm.deleteTemplate = function( templateId ) {
+		var urlForDeleting = vm.url + "/" + String(templateId);
+		return $http.delete(urlForDeleting);
+	};	
 }]);
 }());

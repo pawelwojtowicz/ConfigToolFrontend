@@ -11,8 +11,20 @@
         </md-input-container>
     </form>
     <div border="1">
-
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+          <md-truncate>Template parameters</md-truncate>
+          <span flex></span>
+          <md-button class="md-raised" aria-label="Add" ng-click="vm.showAddTemplateParameterDialog(-1)">Add Template Parameter</md-button>
+            </div>
+        </md-toolbar>
+      <md-virtual-repeat-container id="vertical-container">
+        <div md-virtual-repeat="item in vm.templateParameters" class="repeated-item" flex ng-click="vm.showAddTemplateParameterDialog($index)">
+          <tr><td>{{item.name}}</td><td>{{item.secondName}}</td></tr>
+        </div>
+      </md-virtual-repeat-container>
     </div>
+    <!--
     <div backgroud-color="yellow">
             <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="parameters">
@@ -37,5 +49,7 @@
                     </md-tab>
             </md-tabs>
     </div>
+  -->
+  <md-button class="md-primary md-raised" ng-click="vm.addNewTemplate()">Save template</md-button>
+  <md-button class="md-primary md-raised" ng-click="vm.cancel()">Cancel</md-button>
 </md-content>
-{{vm.name}}

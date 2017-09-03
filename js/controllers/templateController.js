@@ -8,17 +8,19 @@ configurationApp.controller('templateController',['templateService', '$location'
 		var vm = this;
 
 		vm.templateList = [];
-	
-		vm.notifyTemplateListChanged = function( templatesList) {
-			vm.templateList = templatesList;
-		};
 
-		templateService.registerTemplateListListener(vm.notifyTemplateListChanged);
-    templateService.getAllTemplates();
-		
+		templateService.getAllTemplates().then(function( data) {
+			vm.templateList = data;
+		});
+	
+	
 		vm.deleteTemplate = function( templateId )
 		{
-			templateService.deleteTemplate(templateId);
+			templateService.deleteTemplate(templateId).then ( function() {
+				templateService.getAllTemplates().then ( function( templates) {
+					vm.templateList = templates;
+				});
+			});
 		};
 
 		vm.addNewTemplate = function() {
