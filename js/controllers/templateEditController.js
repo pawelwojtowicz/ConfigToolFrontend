@@ -4,20 +4,17 @@
 var configurationApp = angular.module('configurationApp');
 
 
-configurationApp.controller('templateEditController',['$routeParams','templateService','$mdDialog',
-                                                        function( $routeParams, templateService , $mdDialog )
+configurationApp.controller('templateEditController',['$routeParams','templateService','templateParameterService','$location','$mdDialog',
+                                                        function( $routeParams, templateService ,templateParameterService,$location ,$mdDialog )
                                                         {
 		var vm = this;
-    vm.templateId = $routeParams.templateId;
+    vm.templateId = parseInt($routeParams.templateId);
     vm.name = "";
     vm.description = "";
     vm.ownerId = 0;
     vm.templateStatus = 0;
     vm.licensed = 0;
     vm.templateParameters = [];
-
-    console.log("najprzed" + JSON.stringify(vm.templateParameters));
-    
 
     vm.templateDialogUpdate = function( templateInfo ) {
       vm.templateId = templateInfo.templateId;
@@ -29,20 +26,18 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
       vm.templateParameters = templateInfo.templateParameters;
     };
 
-    if (vm.templateId !== "0") {
-      console.log("czy to jest wolane ????"+ vm.templateId);
+    if ( vm.templateId !== 0 ) {
       templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
     }
 
     vm.showAddTemplateParameterDialog = function( index ) {
-
       var editedValue = {};
       if ( index === -1) {
-        editedValue.vame = "";
+        editedValue.name = "";
         editedValue.value = "";
         editedValue.description = "";
         editedValue.OwnerId = 0;
-        editedValue.templateId = 0;
+        editedValue.templateId = vm.templateId;
         editedValue.templateParameterId = 0;
       }
       else
@@ -50,7 +45,6 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
         editedValue = vm.templateParameters[index];
       }
 
-      console.log("przed" + JSON.stringify(vm.templateParameters));
       $mdDialog.show({
 				templateUrl: 'partials/templateParameterDialog.html',
 				controller: 'templateParameterDialogController',
@@ -73,9 +67,26 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
               }
           }
           else {
+            console.log("jest update z chmury"+ JSON.stringify(result.editedValue));
+            templateParameterService.addTemplateParameter(result.editedValue).then(function() {
+              templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );  
+            });
             //write to the server and request the templateEdit page refresh
           }
         });
+    };
+
+    vm.deleteTemplateParameter = function ( index ) {
+      var templateParameter = vm.templateParameters[index];
+
+      if ( templateParameter.templateParameterId === 0 ) {
+        vm.templateParameters.splice(index,1);
+      }
+      else {
+        templateParameterService.deleteTemplateParameter(templateParameter.templateParameterId).then(function() {
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+        });
+      }
     };
 
     vm.addNewTemplate = function() {
@@ -89,7 +100,13 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
         "templateParameters": vm.templateParameters
       };
 
-      templateService.addTemplate(newTemplate);
+      templateService.addTemplate(newTemplate).then(function() {
+        $location.url('/templatepage');        
+      });
+    };
+
+    vm.cancel = function() {
+      $location.url('/templatepage');              
     };
 	}]);
 }());

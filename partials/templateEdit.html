@@ -19,8 +19,8 @@
             </div>
         </md-toolbar>
       <md-virtual-repeat-container id="vertical-container">
-        <div md-virtual-repeat="item in vm.templateParameters" class="repeated-item" flex ng-click="vm.showAddTemplateParameterDialog($index)">
-          <tr><td>{{item.name}}</td><td>{{item.secondName}}</td></tr>
+        <div md-virtual-repeat="item in vm.templateParameters" class="repeated-item" flex>
+          <tr><td>{{item.name}}</td><td>{{item.secondName}}</td><button ng-click="vm.showAddTemplateParameterDialog($index)">Modify</button><button ng-click="vm.deleteTemplateParameter($index)">Delete</button></tr>
         </div>
       </md-virtual-repeat-container>
     </div>
