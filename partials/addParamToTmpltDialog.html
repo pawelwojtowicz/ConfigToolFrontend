@@ -1,0 +1,29 @@
+<md-dialog aria-label="Device" style="width: 500px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+        <h2>{{vm.dialogTitle}}</h2>
+        <span flex=""></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="mat-button">
+        <span flex="">
+            <md-select ng-model="vm.selectedTemplateParameterId">
+                <md-option><em>None</em></md-option>
+                <md-option ng-repeat="templateParameter in vm.templateParameters" 
+                           ng-value="templateParameter.templateParameterId">{{templateParameter.name}}</md-option>
+            </md-select>        
+        </span>
+    </md-dialog-content>
+    <md-dialog-actions class="mat-dialog-actions">
+        <md-button class="mat-button" ng-click="vm.addTemplateElement()">
+            <span class="mat-button-wrapper">Assign parameter</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+        <md-button class="mat-button" ng-click="vm.cancel()">
+            <span class="mat-button-wrapper">Cancel</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

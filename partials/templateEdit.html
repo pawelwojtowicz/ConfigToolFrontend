@@ -24,14 +24,36 @@
         </div>
       </md-virtual-repeat-container>
     </div>
-    <!--
     <div backgroud-color="yellow">
             <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="parameters">
                       <md-content class="md-padding">
                         <h1 class="md-display-2">Parameters</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-                      </md-content>
+                        <div layout="row" layout-xs="column" >
+                          <div flex="">
+                              <md-list>
+                                  <md-list-item class="md-1-line" ng-repeat="assignedParameter in vm.templateElements" 
+                                                                  ng-click="vm.selectTemplateElement($index)" 
+                                                                  ng-class="{selectedIndex: vm.selectedAssociatedParameter===$index}">
+                                      <div class="md-list-item-text" layout="column">{{assignedParameter.parameter.name}}={{assignedParameter.templateParameterId}}</div>
+                                  </md-list-item>
+                              </md-list>
+                          </div>
+                          <div>
+                              <button ng-click="vm.removeParameterToTemplateAssociation()">&#9654;&#9654;</button><br/>
+                              <button ng-click="vm.assignParameterToTemplate()">&#9664;&#9664;</button>
+                          </div>
+                          <div flex="">
+                              <md-list>
+                                  <md-list-item class="md-1-line" ng-repeat="configItem in vm.availableParameters" 
+                                                                  ng-click="vm.selectParameter(vm.availableParameters.indexOf(configItem))" 
+                                                                  ng-class="{selectedIndex: vm.selectedParameter===$index}">
+                                      <div class="md-list-item-text" layout="column">{{configItem.name}}</div>
+                                  </md-list-item>
+                              </md-list>        
+                          </div>
+                      </div>        
+                                    </md-content>
                     </md-tab>
                     <md-tab label="dependencies">
                       <md-content class="md-padding">
@@ -49,7 +71,6 @@
                     </md-tab>
             </md-tabs>
     </div>
-  -->
   <md-button class="md-primary md-raised" ng-click="vm.addNewTemplate()">Save template</md-button>
   <md-button class="md-primary md-raised" ng-click="vm.cancel()">Cancel</md-button>
 </md-content>

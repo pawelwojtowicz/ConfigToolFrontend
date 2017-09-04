@@ -4,8 +4,14 @@
 var configurationApp = angular.module('configurationApp');
 
 
-configurationApp.controller('templateEditController',['$routeParams','templateService','templateParameterService','$location','$mdDialog',
-                                                        function( $routeParams, templateService ,templateParameterService,$location ,$mdDialog )
+configurationApp.controller('templateEditController',['$routeParams',
+                                                      'templateService',
+                                                      'templateParameterService',
+                                                      'parameterService',
+                                                      'templateElementService',
+                                                      '$location',
+                                                      '$mdDialog',
+                                                        function( $routeParams, templateService ,templateParameterService,parameterService,templateElementService,$location ,$mdDialog )
                                                         {
 		var vm = this;
     vm.templateId = parseInt($routeParams.templateId);
@@ -15,8 +21,16 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
     vm.templateStatus = 0;
     vm.licensed = 0;
     vm.templateParameters = [];
+    vm.templateElements = [];
+
+    //parameter handling
+    vm.availableParameters = [];
+    vm.selectedParameter = -1;
+    vm.associatedParameters = [];
+    vm.selectedAssociatedParameter = -1;
 
     vm.templateDialogUpdate = function( templateInfo ) {
+      console.log("template info: "+ JSON.stringify(templateInfo));
       vm.templateId = templateInfo.templateId;
       vm.name = templateInfo.name;
       vm.description = templateInfo.description;
@@ -24,11 +38,18 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
       vm.templateStatus = templateInfo.templateStatus;
       vm.licensed = templateInfo.licensed;
       vm.templateParameters = templateInfo.templateParameters;
+      vm.templateElements = templateInfo.templateElements;
     };
 
     if ( vm.templateId !== 0 ) {
       templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
     }
+
+    parameterService.getAllParameters().then(function(allParameters) {
+      vm.availableParameters = allParameters;
+    });
+
+
 
     vm.showAddTemplateParameterDialog = function( index ) {
       var editedValue = {};
@@ -107,6 +128,58 @@ configurationApp.controller('templateEditController',['$routeParams','templateSe
 
     vm.cancel = function() {
       $location.url('/templatepage');              
+    };
+
+
+//parameters handling
+    vm.selectParameter = function( index) {
+      vm.selectedParameter = index;
+      vm.selectedAssociatedParameter = -1;   
+    };
+
+    vm.selectTemplateElement = function( index) {
+      vm.selectedParameter = -1;
+      vm.selectedAssociatedParameter = index;
+    };
+
+    vm.assignParameterToTemplate = function() {
+      if (-1 !== vm.selectedParameter ) {
+        $mdDialog.show({
+          templateUrl: 'partials/addParamToTmpltDialog.html',
+          controller: 'addParamToTmpltDialogController',
+          controllerAs: 'vm',
+          //targetEvent: ev,
+          clickOutsideToClose: true,
+          locals: {
+            assignmentContext : { parameter: vm.availableParameters[vm.selectedParameter],
+                                  templateParameters : vm.templateParameters
+                                }
+          }
+          }).then( function(result) {
+            var templateElement = {
+              templateId : vm.templateId,
+              templateParameterId : result.templateParameterId,
+              parameterId : result.parameterId
+            };
+
+            templateElementService.addTemplateElement(templateElement). then( function() {
+              templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+            });    
+          });
+          vm.selectedParameter = -1;
+      }
+    };
+
+    vm.removeParameterToTemplateAssociation = function() {
+      if ( -1 !== vm.selectedAssociatedParameter) {
+
+
+        templateElementService.deleteTemplateElement(vm.templateElements[vm.selectedAssociatedParameter].templateId,
+          vm.templateElements[vm.selectedAssociatedParameter].parameterId).then( function(){
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+        });
+      }
+
     };
 	}]);
 }());
