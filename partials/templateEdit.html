@@ -65,8 +65,30 @@
                     </md-tab>
                     <md-tab label="restrictions">
                       <md-content class="md-padding">
-                        <h1 class="md-display-2">Restrictions</h1>
-                        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+                        <div layout="row" layout-xs="column" >
+                          <div flex="">
+                              <md-list>
+                                  <md-list-item class="md-1-line" ng-repeat="template in vm.templateRestrictions" 
+                                                                  ng-click="vm.selectRelationInstanceForDeleting($index)" 
+                                                                  ng-class="{selectedIndex: vm.selectedRelationInstance===$index}">
+                                      <div class="md-list-item-text" layout="column">{{template.name}}</div>
+                                  </md-list-item>
+                              </md-list>
+                          </div>
+                          <div>
+                              <button ng-click="vm.removeRestriction()">&#9654;&#9654;</button><br/>
+                              <button ng-click="vm.addRestriction()">&#9664;&#9664;</button>
+                          </div>
+                          <div flex="">
+                              <md-list>
+                                  <md-list-item class="md-1-line" ng-repeat="template in vm.allTemplates" 
+                                                                  ng-click="vm.selectTemplateForRelation(vm.allTemplates.indexOf(template))" 
+                                                                  ng-class="{selectedIndex: vm.selectedRelationSubject ===$index}">
+                                      <div class="md-list-item-text" layout="column">{{template.name}}</div>
+                                  </md-list-item>
+                              </md-list>        
+                          </div>
+                      </div>        
                       </md-content>
                     </md-tab>
             </md-tabs>

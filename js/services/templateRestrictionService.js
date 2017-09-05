@@ -2,39 +2,41 @@
     'use strict';
     var configurationApp = angular.module('configurationApp');
     
-    configurationApp.service('templateRestrictionService', [ '$http', function($http) {
+    configurationApp.service('templateRestrictionService', [ '$http', 'appConfig', '$q' , function($http,appConfig,$q) {
         var vm = this;
+        vm.url = appConfig.getServiceUrl() + "/templaterestriction";   
     
-    
-        vm.templates = [];
-        vm.templateListUpdateCallbacks = [];
-    
-        vm.addTemplate = function ( newTemplate ) {
-            vm.templates.push(newTemplate);
-            vm.notifyTemplateList(vm.templates);
-        };
-    
-        
-        vm.getAllTemplates = function() {
-            vm.notifyTemplateList(vm.templates);
-        };	
-    
-            
-        vm.deleteTemplate = function( templateId) {
-        //	vm.templates = vm.templates.filter( item => item.templateId != templateId);
-            vm.notifyTemplateList(vm.templates);
-        };
-        
-        vm.notifyTemplateList = function ( templates ) {
-            var toBroadcast = templates;
-            vm.templateListUpdateCallbacks.forEach( function( clbk ) {
-                clbk(toBroadcast);
+        vm.addRestriction = function ( templateRestriction ) {
+            return $q(function( resolve, reject ){
+                $http({	url: vm.url,
+                        method: "POST",
+                        data: templateRestriction,
+                        headers: {'Content-Type': 'application/json'}}).then (
+                        function( response) {
+                            resolve();
+                        } , function () {
+                            reject();
+                        });
             });
-        };
-    
-        vm.registerTemplateListListener = function( templateListener) {
-            vm.templateListUpdateCallbacks.push(templateListener);
-        };
+        };   
+            
+        vm.deleteRestriction = function( templateId , restrictedTemplate) {
+            return $q(function( resolve, reject ){
+                var urlForRequest = vm.url + "/" + templateId + "/" + restrictedTemplate;
+                console.log("such url" + urlForRequest);
+                $http({	url: urlForRequest,
+                        method: "DELETE",
+                        data: {},
+                        headers: {'Content-Type': 'application/json'}}).then (
+                        function( response) {
+                            resolve();
+                        } , function ()
+                        {
+                            reject();
+                        });
+                    });
+        };    
+
     
     }]);
     }());

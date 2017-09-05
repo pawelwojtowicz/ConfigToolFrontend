@@ -9,9 +9,10 @@ configurationApp.controller('templateEditController',['$routeParams',
                                                       'templateParameterService',
                                                       'parameterService',
                                                       'templateElementService',
+                                                      'templateRestrictionService',
                                                       '$location',
                                                       '$mdDialog',
-                                                        function( $routeParams, templateService ,templateParameterService,parameterService,templateElementService,$location ,$mdDialog )
+                                                        function( $routeParams, templateService ,templateParameterService,parameterService,templateElementService,templateRestrictionService,$location ,$mdDialog )
                                                         {
 		var vm = this;
     vm.templateId = parseInt($routeParams.templateId);
@@ -22,6 +23,8 @@ configurationApp.controller('templateEditController',['$routeParams',
     vm.licensed = 0;
     vm.templateParameters = [];
     vm.templateElements = [];
+    vm.templateDependencies =[];
+    vm.templateRestrictions = [];
 
     //parameter handling
     vm.availableParameters = [];
@@ -29,8 +32,19 @@ configurationApp.controller('templateEditController',['$routeParams',
     vm.associatedParameters = [];
     vm.selectedAssociatedParameter = -1;
 
+    // collection for restrictions and dependencies
+    vm.allTemplates = [];
+    vm.selectedRelationSubject = -1;
+    vm.selectedRelationInstance = -1;
+
+    templateService.getAllTemplates().then( function( allTemplates) {
+      vm.allTemplates = allTemplates;
+    });
+
+
+
     vm.templateDialogUpdate = function( templateInfo ) {
-      console.log("template info: "+ JSON.stringify(templateInfo));
+      console.log("templateInfo: "+ JSON.stringify(templateInfo));
       vm.templateId = templateInfo.templateId;
       vm.name = templateInfo.name;
       vm.description = templateInfo.description;
@@ -39,17 +53,8 @@ configurationApp.controller('templateEditController',['$routeParams',
       vm.licensed = templateInfo.licensed;
       vm.templateParameters = templateInfo.templateParameters;
       vm.templateElements = templateInfo.templateElements;
-
-      vm.templateElements.forEach( function(element) {
-        var tmpltParamId = element.templateParameterId;
-
-        vm.templateParameters.forEach( function( templateParameter ) {
-          if ( templateParameter.templateParameterId === tmpltParamId ) {
-            element.templateParameter = templateParameter;
-          }
-        });
-
-      });
+      vm.templateRestrictions = templateInfo.templateRestrictions;
+      vm.templateDependecies = templateInfo.templateDependecies;
     };
 
     if ( vm.templateId !== 0 ) {
@@ -190,6 +195,47 @@ configurationApp.controller('templateEditController',['$routeParams',
         });
       }
 
+    };
+
+
+    // code section for dependencies and restrictions
+    vm.selectTemplateForRelation= function( index ) {
+      vm.selectedRelationSubject = index;
+      vm.selectedRelationInstance = -1;
+
+    };
+
+    vm.selectRelationInstanceForDeleting= function( index ) {
+      vm.selectedRelationSubject = -1;
+      vm.selectedRelationInstance = index;
+    };
+
+    vm.addRestriction = function() {
+      if (-1 !== vm.selectedRelationSubject) {
+
+        var restrictionObject = {
+          templateId : vm.templateId,
+          restrictedTemplateId : vm.allTemplates[vm.selectedRelationSubject].templateId 
+        };
+
+        templateRestrictionService.addRestriction(restrictionObject).then( function(){
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+          vm.selectedRelationSubject = -1;  
+        });
+      }
+
+      
+    };
+
+    vm.removeRestriction = function() {
+      if ( -1 !== vm.selectedRelationInstance) {
+        templateRestrictionService.deleteRestriction(vm.templateId,vm.templateRestrictions[vm.selectedRelationInstance].templateId).then( function(){
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+          vm.selectedRelationSubject = -1;  
+        });
+
+      }
+      
     };
 	}]);
 }());
