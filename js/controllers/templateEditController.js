@@ -172,11 +172,10 @@ configurationApp.controller('templateEditController',['$routeParams',
 
     vm.removeParameterToTemplateAssociation = function() {
       if ( -1 !== vm.selectedAssociatedParameter) {
-
-
         templateElementService.deleteTemplateElement(vm.templateElements[vm.selectedAssociatedParameter].templateId,
           vm.templateElements[vm.selectedAssociatedParameter].parameterId).then( function(){
           templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+          vm.selectedAssociatedParameter = -1;
         });
       }
 
