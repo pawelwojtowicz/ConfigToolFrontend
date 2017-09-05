@@ -35,7 +35,7 @@
                                   <md-list-item class="md-1-line" ng-repeat="assignedParameter in vm.templateElements" 
                                                                   ng-click="vm.selectTemplateElement($index)" 
                                                                   ng-class="{selectedIndex: vm.selectedAssociatedParameter===$index}">
-                                      <div class="md-list-item-text" layout="column">{{assignedParameter.parameter.name}}={{assignedParameter.templateParameterId}}</div>
+                                      <div class="md-list-item-text" layout="column">{{assignedParameter.parameter.name}}={{assignedParameter.templateParameter.name}}</div>
                                   </md-list-item>
                               </md-list>
                           </div>

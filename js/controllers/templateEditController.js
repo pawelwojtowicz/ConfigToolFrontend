@@ -39,6 +39,17 @@ configurationApp.controller('templateEditController',['$routeParams',
       vm.licensed = templateInfo.licensed;
       vm.templateParameters = templateInfo.templateParameters;
       vm.templateElements = templateInfo.templateElements;
+
+      vm.templateElements.forEach( function(element) {
+        var tmpltParamId = element.templateParameterId;
+
+        vm.templateParameters.forEach( function( templateParameter ) {
+          if ( templateParameter.templateParameterId === tmpltParamId ) {
+            element.templateParameter = templateParameter;
+          }
+        });
+
+      });
     };
 
     if ( vm.templateId !== 0 ) {
