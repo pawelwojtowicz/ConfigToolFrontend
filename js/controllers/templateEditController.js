@@ -10,9 +10,10 @@ configurationApp.controller('templateEditController',['$routeParams',
                                                       'parameterService',
                                                       'templateElementService',
                                                       'templateRestrictionService',
+                                                      'templateDependencyService',
                                                       '$location',
                                                       '$mdDialog',
-                                                        function( $routeParams, templateService ,templateParameterService,parameterService,templateElementService,templateRestrictionService,$location ,$mdDialog )
+                                                        function( $routeParams, templateService ,templateParameterService,parameterService,templateElementService,templateRestrictionService,templateDependencyService,$location ,$mdDialog )
                                                         {
 		var vm = this;
     vm.templateId = parseInt($routeParams.templateId);
@@ -44,7 +45,6 @@ configurationApp.controller('templateEditController',['$routeParams',
 
 
     vm.templateDialogUpdate = function( templateInfo ) {
-      console.log("templateInfo: "+ JSON.stringify(templateInfo));
       vm.templateId = templateInfo.templateId;
       vm.name = templateInfo.name;
       vm.description = templateInfo.description;
@@ -54,7 +54,8 @@ configurationApp.controller('templateEditController',['$routeParams',
       vm.templateParameters = templateInfo.templateParameters;
       vm.templateElements = templateInfo.templateElements;
       vm.templateRestrictions = templateInfo.templateRestrictions;
-      vm.templateDependecies = templateInfo.templateDependecies;
+      vm.templateDependecies = templateInfo.templateDependencies;
+      console.log("object dependensji =" + JSON.stringify(vm.templateDependecies));
     };
 
     if ( vm.templateId !== 0 ) {
@@ -222,9 +223,7 @@ configurationApp.controller('templateEditController',['$routeParams',
           templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
           vm.selectedRelationSubject = -1;  
         });
-      }
-
-      
+      }     
     };
 
     vm.removeRestriction = function() {
@@ -233,9 +232,32 @@ configurationApp.controller('templateEditController',['$routeParams',
           templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
           vm.selectedRelationSubject = -1;  
         });
+      }  
+    };
 
-      }
-      
+    vm.addDependency = function() {
+      if (-1 !== vm.selectedRelationSubject) {
+
+        var dependencyObject = {
+          templateId : vm.templateId,
+          requiredTemplateId : vm.allTemplates[vm.selectedRelationSubject].templateId 
+        };
+
+        templateDependencyService.addDependency(dependencyObject).then( function(){
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+          vm.selectedRelationSubject = -1;  
+        });
+      }     
+    };
+
+    vm.removeDependency = function() {
+      if ( -1 !== vm.selectedRelationInstance) {
+        templateDependencyService.deleteDependency(vm.templateId,vm.templateDependecies[vm.selectedRelationInstance].templateId).then( function(){
+          templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );
+          vm.selectedRelationSubject = -1;  
+        });
+      }  
+
     };
 	}]);
 }());
