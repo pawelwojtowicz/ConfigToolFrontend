@@ -34,7 +34,6 @@
                   });
             };
             vm.showUpdateDialog = function( id ) {
-                console.log("tutaj jeszcze ok.");
                 return $mdDialog.show({
                     templateUrl: 'partials/configItemDialog.html',
                     controller: 'configItemDialogController',

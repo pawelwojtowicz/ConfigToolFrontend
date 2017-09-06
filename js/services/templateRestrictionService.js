@@ -23,7 +23,6 @@
         vm.deleteRestriction = function( templateId , restrictedTemplate) {
             return $q(function( resolve, reject ){
                 var urlForRequest = vm.url + "/" + templateId + "/" + restrictedTemplate;
-                console.log("such url" + urlForRequest);
                 $http({	url: urlForRequest,
                         method: "DELETE",
                         data: {},

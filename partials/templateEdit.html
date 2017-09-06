@@ -73,9 +73,9 @@
                             </div>
                             <div flex="">
                                 <md-list>
-                                    <md-list-item class="md-1-line" ng-repeat="template in vm.allTemplates" 
+                                    <md-list-item class="md-1-line" ng-repeat="template in vm.allTemplates | removeTemplatesFrom : vm.templateDependecies : vm.templateId" 
                                                                     ng-click="vm.selectTemplateForRelation(vm.allTemplates.indexOf(template))" 
-                                                                    ng-class="{selectedIndex: vm.selectedRelationSubject ===$index}">
+                                                                    ng-class="{selectedIndex: vm.selectedRelationSubject === vm.allTemplates.indexOf(template)}">
                                         <div class="md-list-item-text" layout="column">{{template.name}}</div>
                                     </md-list-item>
                                 </md-list>        
@@ -101,9 +101,9 @@
                           </div>
                           <div flex="">
                               <md-list>
-                                  <md-list-item class="md-1-line" ng-repeat="template in vm.allTemplates" 
+                                  <md-list-item class="md-1-line" ng-repeat="template in vm.allTemplates | removeTemplatesFrom : vm.templateRestrictions : vm.templateId" 
                                                                   ng-click="vm.selectTemplateForRelation(vm.allTemplates.indexOf(template))" 
-                                                                  ng-class="{selectedIndex: vm.selectedRelationSubject ===$index}">
+                                                                  ng-class="{selectedIndex: vm.selectedRelationSubject === vm.allTemplates.indexOf(template)}">
                                       <div class="md-list-item-text" layout="column">{{template.name}}</div>
                                   </md-list-item>
                               </md-list>        

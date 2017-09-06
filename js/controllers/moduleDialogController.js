@@ -39,7 +39,6 @@
                                   "name": vm.name,
                                   "description" : vm.description,
                                   "configItems": vm.moduleConfigItems };
-                                  console.log(JSON.stringify(newModule));
                 moduleService.addModule(newModule).then ( function() {
                     $mdDialog.cancel();
                 });
@@ -55,7 +54,6 @@
             };
 
             vm.selectConfigItem = function ( configItemId ) {
-                console.log("selected config item" + configItemId);
                 vm.selectedModuleConfigItem = -1;
                 vm.selectedConfigItem = configItemId;                
                 
@@ -86,7 +84,6 @@
                 if (-1 !== vm.selectedConfigItem) {
                     if ( 0 !== vm.moduleId ) {
                         var setupEntity = { moduleId : vm.moduleId , configurationItemId : vm.availableConfigItems[vm.selectedConfigItem].configurationItemId};
-                        console.log(" adding config item" + JSON.stringify(setupEntity));
                         moduleConfigItemSetupService.addSetupEntity(setupEntity).then( function() {
                             moduleService.getModuleById( vm.moduleId ).then( vm.updateModuleDetails, function ( error ) {
                                 vm.name = error.toString();

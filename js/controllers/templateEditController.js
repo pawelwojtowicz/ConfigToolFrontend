@@ -55,7 +55,6 @@ configurationApp.controller('templateEditController',['$routeParams',
       vm.templateElements = templateInfo.templateElements;
       vm.templateRestrictions = templateInfo.templateRestrictions;
       vm.templateDependecies = templateInfo.templateDependencies;
-      console.log("object dependensji =" + JSON.stringify(vm.templateDependecies));
     };
 
     if ( vm.templateId !== 0 ) {
@@ -95,7 +94,6 @@ configurationApp.controller('templateEditController',['$routeParams',
 				}
 			  }).then( function(result) {
           if (result.editedValue.templateId === 0) {
-              console.log("po" + JSON.stringify(vm.templateParameters));
             
               if ( result.itemIndex === -1) {
                 vm.templateParameters.push(result.editedValue);  
@@ -105,7 +103,6 @@ configurationApp.controller('templateEditController',['$routeParams',
               }
           }
           else {
-            console.log("jest update z chmury"+ JSON.stringify(result.editedValue));
             templateParameterService.addTemplateParameter(result.editedValue).then(function() {
               templateService.getTemplateById(vm.templateId).then( vm.templateDialogUpdate );  
             });
@@ -257,7 +254,6 @@ configurationApp.controller('templateEditController',['$routeParams',
           vm.selectedRelationSubject = -1;  
         });
       }  
-
     };
 	}]);
 }());

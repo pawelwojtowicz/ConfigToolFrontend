@@ -7,7 +7,6 @@ configurationApp.service('templateService', [ '$http', 'appConfig', '$q' ,functi
 	vm.url = appConfig.getServiceUrl() + "/template";
 
 	vm.addTemplate = function ( newTemplate ) {
-		console.log(JSON.stringify(newTemplate));
 		return $q(function( resolve, reject ){
 			$http({	url: vm.url,
             		method: "POST",
@@ -26,7 +25,6 @@ configurationApp.service('templateService', [ '$http', 'appConfig', '$q' ,functi
 	vm.getAllTemplates = function() {
 		return $q( function(resolve, reject) {
 			$http.get(vm.url).then( function( response) {
-				console.log(JSON.stringify(response.data));
 				resolve(response.data);
 			},function(error) {
 				reject();

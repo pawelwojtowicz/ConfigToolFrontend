@@ -9,7 +9,6 @@ configurationApp.service("deviceModuleSetupService", ['$http', 'appConfig', '$q'
 	vm.addSetupEntity = function (setupEntity ) {
 		return $q(function( resolve, reject ){
 			var urlForRequest = vm.url + "/" + setupEntity.deviceId + "/" + setupEntity.moduleId;
-			console.log("such url" + urlForRequest);
 			$http({	url: urlForRequest,
             		method: "POST",
             		data: setupEntity,
@@ -26,7 +25,6 @@ configurationApp.service("deviceModuleSetupService", ['$http', 'appConfig', '$q'
 	vm.removeSetupEntity = function (setupEntity ) {
 		return $q(function( resolve, reject ){
 			var urlForRequest = vm.url + "/" + setupEntity.deviceId + "/" + setupEntity.moduleId;
-			console.log("such url" + urlForRequest);
 			$http({	url: urlForRequest,
             		method: "DELETE",
             		data: setupEntity,
