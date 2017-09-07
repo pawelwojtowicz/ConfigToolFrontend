@@ -1,0 +1,39 @@
+
+<md-content layout-padding>
+        <form name="configurationEditForm">
+            <md-input-container class="md-block">
+                    <label>Configuration Name</label>
+                    <input md-maxlength="30" required md-no-asterisk name="name" ng-model="vm.name">
+            </md-input-container>
+            <md-input-container class="md-block">
+                    <label>Configuration Description</label>
+                    <input md-maxlength="200" required md-no-asterisk name="description" ng-model="vm.description">
+            </md-input-container>
+        </form>
+        <div layout="row" layout-xs="column" >
+                <div flex="">
+                    <md-list>
+                        <md-list-item class="md-1-line" ng-repeat="configurationElement in vm.configurationElements" 
+                                                        ng-click="vm.selectConfigurationElement($index)" 
+                                                        ng-class="{selectedIndex: vm.selectedConfigurationElement===$index}">
+                            <div class="md-list-item-text" layout="column">{{configurationElement.name}}</div>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <div>
+                    <button ng-click="vm.removeConfigurationElement()">&#9654;&#9654;</button><br/>
+                    <button ng-click="vm.addConfigurationElement()">&#9664;&#9664;</button>
+                </div>
+                <div flex="">
+                    <md-list>
+                        <md-list-item class="md-1-line" ng-repeat="template in vm.templates" 
+                                                        ng-click="vm.selectTemplate(vm.templates.indexOf(template))" 
+                                                        ng-class="{selectedIndex: vm.selectedTemplate===vm.templates.indexOf(template)}">
+                            <div class="md-list-item-text" layout="column">{{template.name}}</div>
+                        </md-list-item>
+                    </md-list>        
+                </div>
+            </div>        
+<md-button class="md-primary md-raised" ng-click="vm.saveConfiguration">Save Configuration</md-button>
+      <md-button class="md-primary md-raised" ng-click="vm.cancel()">Cancel</md-button>
+    </md-content>

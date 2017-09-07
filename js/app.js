@@ -37,13 +37,25 @@ configurationFrontend.config(['$routeProvider',
           bindToController: true,
           replace: true      }).
         when('/templateedit/:templateId', {
-            templateUrl: 'partials/templateEdit.html',
-            controller: 'templateEditController',
-            controllerAs: 'vm',
-            bindToController: true,
-            replace: true      }).
+          templateUrl: 'partials/templateEdit.html',
+          controller: 'templateEditController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        when('/configurationpage', {
+          templateUrl: 'partials/configurationPage.html',
+          controller: 'configurationController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        when('/configurationdialog/:configurationId', {
+          templateUrl: 'partials/configurationDialog.html',
+          controller: 'configurationDialogController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
         otherwise({
-        redirectTo: '/templatepage'
+          redirectTo: '/templatepage'
       });
   }]);
 }());

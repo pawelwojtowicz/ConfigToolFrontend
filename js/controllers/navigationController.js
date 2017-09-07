@@ -10,7 +10,8 @@ configurationApp.controller('navigationController',['$scope','$location',functio
                              { buttonCaption: "Modules" ,      pageName: "modulepage"},
                              { buttonCaption: "Config items" , pageName: "configitempage"},
                              { buttonCaption: "Templates" ,    pageName: "templatepage"},
-                             { buttonCaption: "Parameters",    pageName: "parameterpage"}
+                             { buttonCaption: "Parameters",    pageName: "parameterpage"},
+                             { buttonCaption: "Configuration",    pageName: "configurationpage"}
                             ];
         
         vm.goTo = function ( pageName ) {
