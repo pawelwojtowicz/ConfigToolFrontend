@@ -32,12 +32,36 @@ md-list-item > button {
       min-height: 200px;
       width: 100%;
   }
+
+  #parameterContainer {
+    height: 300px;
+    width: 90%;
+    align-items: center;
+    justify-content: center
+
+}
+
+#templateParameterList{
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
   
  .repeated-item {
     border-bottom: 1px solid #ddd;
     box-sizing: border-box;
     height: 40px;
-    padding-top: 10px; }
+    padding-top: 10px; 
+}
+
+.repeated-parameter {
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    height: 50px;
+    padding-top: 5px; }
+
   
  md-content {
     margin: 16px; }

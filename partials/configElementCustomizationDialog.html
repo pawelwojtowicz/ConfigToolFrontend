@@ -1,0 +1,36 @@
+<md-dialog aria-label="ConfigurationItem" style="width: 500px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+        <h2>Instantiating {{vm.templateName}} template</h2>
+        <span flex=""></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content id="templateParameterList">
+    Please provide 
+
+    template configuration:
+    <div id="templateParameterList">
+        <md-virtual-repeat-container id="parameterContainer">
+            <div md-virtual-repeat="configElementParameter in vm.configElementParameters" class="repeated-parameter" flex>
+                <div class="md-2-line">
+                    <label>{{configElementParameter.name}}</label><br/>
+                    <input size="50" ng-model="configElementParameter.value"> 
+                </div>     
+            </div>
+        </md-virtual-repeat-container>
+    </div>
+    </md-dialog-content>
+    <md-dialog-actions class="mat-dialog-actions">
+            <md-button class="mat-button" ng-click="vm.addTemplateToConfiguration()">
+                <span class="mat-button-wrapper">Add template</span>
+                <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
+                <div class="mat-button-focus-overlay"></div>
+            </md-button>
+            <md-button class="mat-button" ng-click="vm.cancel()">
+                <span class="mat-button-wrapper">Cancel</span>
+                <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
+                <div class="mat-button-focus-overlay"></div>
+            </md-button>
+        </md-dialog-actions>
+    
+</md-dialog>

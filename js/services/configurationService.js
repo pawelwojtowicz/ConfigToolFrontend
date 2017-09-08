@@ -6,14 +6,14 @@
         var vm = this;
         vm.url = appConfig.getServiceUrl() + "/configuration";
     
-        vm.addNewConfiguration = function (configuration ) {
+        vm.saveConfiguration = function (configuration ) {
             return $q(function( resolve, reject ){
                 $http({	url: vm.url,
                         method: "POST",
-                        data: configItem,
+                        data: configuration,
                         headers: {'Content-Type': 'application/json'}}).then (
                         function( response) {
-                            resolve();
+                            resolve(response.data);
                         } , function ()
                         {
                             reject();
