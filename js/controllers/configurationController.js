@@ -9,7 +9,7 @@
             vm.configurationList = [];
 
             vm.updateConfigurationList = function( configList) {
-                vm.configList = configList;
+                vm.configurationList = configList;
             };
 
             configurationService.getAllConfigurations().then(vm.updateConfigurationList);

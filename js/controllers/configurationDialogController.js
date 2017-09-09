@@ -33,6 +33,7 @@
 
             if ( 0 !== vm.configurationId)
             {
+                console.log("will be calling for " +String(vm.configurationId));
                 configurationService.getConfigurationById(vm.configurationId).then(vm.configurationInfoUpdate);
             }
 
@@ -82,6 +83,7 @@
                         clickOutsideToClose: true,
                         locals: {
                             configElementEditContext : {
+                                configurationId : vm.configurationId,
                                 configurationElementId: 0,
                                 templateId: vm.templates[vm.selectedTemplate].templateId
                             }
