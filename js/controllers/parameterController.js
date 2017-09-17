@@ -23,18 +23,21 @@ configurationApp.controller('parameterController',['parameterService','$mdDialog
 		};
 
 		vm.showAddDialog = function() {
-			return $mdDialog.show({
-				templateUrl: 'partials/parameterDialog.html',
-				controller: 'parameterDialogController',
-				controllerAs: 'vm',
-				//targetEvent: ev,
-				clickOutsideToClose: true,
-				locals: {
-					selectedParameterId : 0	
-				}
-			  });
+			vm.showEditParameterDialog(0).then( function() {
+				parameterService.getAllParameters().then(function( parameterList ) { 
+					vm.parameters = parameterList;
+				});				
+			});
 		};
 		vm.showUpdateDialog = function( parameterId ) {
+			vm.showEditParameterDialog(parameterId).then( function() {
+				parameterService.getAllParameters().then(function( parameterList ) { 
+					vm.parameters = parameterList;
+				});				
+			});	
+		};
+
+		vm.showEditParameterDialog = function( parameterId ) {
 			return $mdDialog.show({
 				templateUrl: 'partials/parameterDialog.html',
 				controller: 'parameterDialogController',
@@ -44,7 +47,7 @@ configurationApp.controller('parameterController',['parameterService','$mdDialog
 				locals: {
 					selectedParameterId: parameterId
 				}
-			  });
+			});
 		};
 
 	}]);

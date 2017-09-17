@@ -10,7 +10,7 @@
                                                                                 '$mdDialog',function(templateService,configElementEditContext,configurationElementService,$mdDialog)
         {
             var vm = this;
-            vm.configurationId = configElementEditContext.configurationId;
+            vm.parentConfigurationId = configElementEditContext.configurationId;
             vm.configurationElementId = configElementEditContext.configurationElementId;
             vm.templateId = configElementEditContext.templateId;
             vm.templateName = "";
@@ -33,7 +33,9 @@
             };
 
             if (vm.configurationElementId !== 0) {
+                console.log("refresh the new element");
                 configurationElementService.getConfigurationElementById(vm.configurationElementId).then( function(configurationElement){
+                    console.log(JSON.stringify(configurationElement));
                     configurationElement.configurationElementParameters.forEach(function (configElementParameter){
                         var elementParameter = {
                             id: configElementParameter.templateParameter.templateParameterId,
@@ -56,7 +58,7 @@
                 var configurationElement = {
                     configurationElementId : vm.configurationElementId,
                     baselineId : 1,
-                    configurationId: vm.configurationId,
+                    parentConfigurationId: vm.parentConfigurationId,
                     templateId: vm.templateId,
                     genericTemplatePath: vm.genericTemplatePath,
                     configurationElementParameters: []

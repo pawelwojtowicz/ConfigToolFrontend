@@ -8,6 +8,7 @@ configurationApp.service("moduleService", ['$http', 'appConfig', '$q' ,function(
 	vm.moduleUpdateCallbacks = [];
 
 	vm.addModule = function (newModule ) {
+		console.log("it comming");
 		return $q(function( resolve, reject ){
 			$http({	url: vm.url,
             		method: "POST",

@@ -15,13 +15,14 @@
             vm.configurationId = parseInt($routeParams.configurationId);
             vm.name = "";
             vm.description = "";
-            vm.configurationElements = [{name : "Tomek"}, {name : "Tomek1"}, {name : "Tomek2"}, {name : "Tomek3"}];
-            vm.templates = [{name : "Tomek"}, {name : "Tomek1"}, {name : "Tomek2"}, {name : "Tomek3"}];
+            vm.configurationElements = [];
+            vm.templates = [];
 
             vm.selectedConfigurationElement = -1;
             vm.selectedTemplate = -1;
 
             vm.configurationInfoUpdate = function( configuration) {
+                console.log(JSON.stringify(configuration));
                 vm.name = configuration.name;
                 vm.description = configuration.description;
                 vm.configurationElements = configuration.configurationElements;

@@ -40,7 +40,7 @@ configurationApp.controller('deviceDialogController',['selectedDeviceId','device
 							"deviceModules": vm.deviceModules
 							};
 			deviceService.addDevice(newDevice).then ( function() {
-				$mdDialog.cancel();
+				$mdDialog.hide();
 			});
 		};
 

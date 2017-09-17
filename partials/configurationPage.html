@@ -5,7 +5,7 @@
         </tr>
         <tr ng-repeat="configuration in vm.configurationList">
             <td>{{configuration.name}}</td>
-            <td>{{configuration.description}}</td>
+            <td>{{configuration.description}}{{configuration.configurationId}}</td>
             <td>
                 <button ng-click="vm.updateConfiguration(configuration.configurationId)">Modify</button>
                 <button ng-click="vm.deleteConfiguration(configuration.configurationId)">Delete</button>

@@ -36,7 +36,7 @@
                                          exportType : vm.exportType,
                                          fileName: vm.fileName };
                 configItemService.addNewConfigItem(newConfigItem).then ( function() {
-                    $mdDialog.cancel();
+                    $mdDialog.hide();
                 });
             };
 

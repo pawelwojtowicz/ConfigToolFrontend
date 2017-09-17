@@ -14,16 +14,6 @@ configurationApp.controller('moduleController',['$scope','moduleService','module
 		moduleService.getAllModules().then(function( moduleList) { 
 			vm.modulesList = moduleList;
 		});
-
-		vm.addNewModule = function() {
-			var newModule = { "moduleId" : "0" , "name": vm.name,"description" : vm.description,"deviceId": vm.deviceId};
-			moduleService.addModule(newModule).then ( function() {
-				moduleService.getAllModules().then(function( moduleList) { 
-					vm.modulesList = moduleList;
-				});
-			});
-		}; 
-		
 		
 		vm.deleteModule = function( moduleId )
 		{
@@ -35,18 +25,22 @@ configurationApp.controller('moduleController',['$scope','moduleService','module
 		};
 
 		vm.showAddDialog = function() {
-			return $mdDialog.show({
-				templateUrl: 'partials/moduleDialog.html',
-				controller: 'moduleDialogController',
-				controllerAs: 'vm',
-				//targetEvent: ev,
-				clickOutsideToClose: true,
-				locals: {
-					selectedModuleId : 0	
-				}
-			  });
+			vm.showEditModuleDialog(0).then( function() {
+				moduleService.getAllModules().then(function( moduleList) { 
+					vm.modulesList = moduleList;
+				});				
+			});
 		};
+
 		vm.showUpdateDialog = function( moduleId ) {
+			vm.showEditModuleDialog(moduleId).then( function() {
+				moduleService.getAllModules().then(function( moduleList) { 
+					vm.modulesList = moduleList;
+				});				
+			});
+		};
+
+		vm.showEditModuleDialog = function ( moduleId ) {
 			return $mdDialog.show({
 				templateUrl: 'partials/moduleDialog.html',
 				controller: 'moduleDialogController',

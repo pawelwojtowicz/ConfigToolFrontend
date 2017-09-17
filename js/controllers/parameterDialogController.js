@@ -54,7 +54,7 @@
                     "configurationItem": vm.configItem
                 };
                 parameterService.addParameter(newParameter).then ( function() {
-                    $mdDialog.cancel();
+                    $mdDialog.hide();
                 });
             };
 

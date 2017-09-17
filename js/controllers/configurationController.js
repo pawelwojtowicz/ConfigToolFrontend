@@ -29,6 +29,7 @@
             };
 
             vm.showConfigurationDialog = function( index ) {
+                console.log("This dialog will be shown with" + String(index));
                 $location.url("/configurationdialog/"+ String(index));    
             };
 
