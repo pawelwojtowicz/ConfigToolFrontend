@@ -34,8 +34,8 @@
            
     
             
-        vm.deleteConfigurationElement = function( configurationId) {
-            var urlForDeleting = vm.url + "/" + String(configItemId);
+        vm.deleteConfigurationElement = function( configurationElementId) {
+            var urlForDeleting = vm.url + "/" + String(configurationElementId);
             return $http.delete(urlForDeleting);
         };
     }]);

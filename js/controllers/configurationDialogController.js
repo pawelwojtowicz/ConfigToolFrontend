@@ -7,9 +7,10 @@
     configurationApp.controller('configurationDialogController',[   '$routeParams',
                                                                     '$location',
                                                                     'configurationService',
+                                                                    'configurationElementService',
                                                                     'templateService',
                                                                     '$mdDialog',
-                                                                    function($routeParams, $location,configurationService,templateService ,$mdDialog)
+                                                                    function($routeParams, $location,configurationService,configurationElementService,templateService ,$mdDialog)
         {
             var vm = this;
             vm.configurationId = parseInt($routeParams.configurationId);
@@ -89,6 +90,8 @@
                                 templateId: vm.templates[vm.selectedTemplate].templateId
                             }
                         }
+                    }).then(function(){
+                        configurationService.getConfigurationById(vm.configurationId).then(vm.configurationInfoUpdate);                        
                     });
                     
 
@@ -101,7 +104,12 @@
             vm.removeConfigurationElement = function() {
                 if (-1 !== vm.selectedConfigurationElement)
                 {
-                    //remove the entry of the configuration element from the DB and force the reload
+
+                    var configurationElementIdForDeleting = vm.configurationElements[vm.selectedConfigurationElement].configurationElementId;
+
+                    configurationElementService.deleteConfigurationElement(configurationElementIdForDeleting).then(function(){
+                        configurationService.getConfigurationById(vm.configurationId).then(vm.configurationInfoUpdate);                        
+                    });
 
                     vm.selectedConfigurationElement = -1;
                 }
