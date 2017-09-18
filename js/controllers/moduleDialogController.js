@@ -39,7 +39,6 @@
                                   "name": vm.name,
                                   "description" : vm.description,
                                   "configItems": vm.moduleConfigItems };
-                console.log(JSON.stringify(newModule));
                 moduleService.addModule(newModule).then ( function() {
                     $mdDialog.hide();
                 });
