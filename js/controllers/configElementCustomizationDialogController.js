@@ -14,12 +14,21 @@
             vm.configurationElementId = configElementEditContext.configurationElementId;
             vm.templateId = configElementEditContext.templateId;
             vm.templateName = "";
+            vm.templateGenericFlag = 0;
             vm.configElementParameters = [];
             vm.genericTemplatePath = "";
-            
+
 
             vm.buildParameterList = function( template ) {
                 vm.templateName = template.name;
+                vm.templateGenericFlag = 0;
+
+                template.templateElements.forEach( function(templateElement){
+                    if (templateElement.parameter.genericPath === 1 ){
+                        vm.templateGenericFlag = 1;
+                    }
+                });
+
                 template.templateParameters.forEach( function(templateParameter) {
                     var elementParameter = {
                         id: templateParameter.templateParameterId,
@@ -33,9 +42,7 @@
             };
 
             if (vm.configurationElementId !== 0) {
-                console.log("refresh the new element");
                 configurationElementService.getConfigurationElementById(vm.configurationElementId).then( function(configurationElement){
-                    console.log(JSON.stringify(configurationElement));
                     configurationElement.configurationElementParameters.forEach(function (configElementParameter){
                         var elementParameter = {
                             id: configElementParameter.templateParameter.templateParameterId,
@@ -51,6 +58,7 @@
             }
 
             if ( vm.templateId !== 0 ) {
+                console.log("this is crazy - why there's no stuff here");
                 templateService.getTemplateById(vm.templateId).then( vm.buildParameterList );
             }
 
@@ -75,7 +83,6 @@
                     configurationElement.configurationElementParameters.push( dbConfigElementParam);
                 });
 
-                console.log(JSON.stringify(configurationElement));
 
                 configurationElementService.saveConfigurationElement(configurationElement).then( function() {
                     $mdDialog.hide();

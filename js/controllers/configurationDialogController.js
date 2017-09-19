@@ -23,7 +23,6 @@
             vm.selectedTemplate = -1;
 
             vm.configurationInfoUpdate = function( configuration) {
-                console.log(JSON.stringify(configuration));
                 vm.name = configuration.name;
                 vm.description = configuration.description;
                 vm.configurationElements = configuration.configurationElements;
@@ -35,7 +34,6 @@
 
             if ( 0 !== vm.configurationId)
             {
-                console.log("will be calling for " +String(vm.configurationId));
                 configurationService.getConfigurationById(vm.configurationId).then(vm.configurationInfoUpdate);
             }
 
@@ -48,7 +46,6 @@
                     customerId: 0
                 };
                 configurationService.saveConfiguration( configuration ).then( function ( item) {
-                    console.log(JSON.stringify(item));
                     $location.url("/configurationdialog/"+ String(item.configurationId));
                 });
             };
@@ -74,9 +71,6 @@
 
             vm.addConfigurationElement = function() {
                 if (-1 !==vm.selectedTemplate) {
-                    // add the dialog,which forces the input of the template parameters;
-                    // store the DB
-
                     $mdDialog.show({
                         templateUrl: 'partials/configElementCustomizationDialog.html',
                         controller: 'configElementCustomizationDialogController',
