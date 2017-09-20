@@ -4,7 +4,14 @@
             <td>ID</td><td>Name</td><td>Description</td><td>deviceId</td><td>Actions</td>
         </tr>
         <tr ng-repeat="moduleInfo in vm.modulesList">
-            <td>{{moduleInfo.moduleId}}</td><td>{{moduleInfo.name}}</td><td>{{moduleInfo.description}}</td><td>{{ vm.findDeviceName(moduleInfo.deviceId) }}</td><td><button ng-click="vm.showUpdateDialog(moduleInfo.moduleId)">Modify</button><button ng-click="vm.deleteModule(moduleInfo.moduleId)">Delete</button></td>
+            <td>{{moduleInfo.moduleId}}</td>
+            <td>{{moduleInfo.name}}</td>
+            <td>{{moduleInfo.description}}</td>
+            <td>{{ vm.findDeviceName(moduleInfo.deviceId) }}</td>
+            <td>
+                    <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showUpdateDialog(moduleInfo.moduleId)"></md-icon>
+                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteModule(moduleInfo.moduleId)"></md-icon>
+            </td>
         </tr>
     </table>
     <md-button class="md-primary md-raised" ng-click="vm.showAddDialog()">Add module</md-button>

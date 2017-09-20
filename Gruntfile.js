@@ -130,6 +130,19 @@ module.exports = function(grunt) {
         }
       }  
     },
+//-----copy the vector icons to the output directory ---------------------------------------
+      copy: {
+        debug: {
+			expand: true,
+			src: 'assets/*',
+			dest: 'output',
+        },
+        deploy: {
+			expand: true,
+			src: 'assets/*',
+			dest: 'output',
+        }
+      },
 //-----alter the index.html, to enable livereload in debug mode ---------
     'string-replace': {
       inline: {
@@ -179,12 +192,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-npmcopy');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-string-replace');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-run');
   
   // Default task(s).
-  grunt.registerTask('buildDebug', ['htmlhint','jshint','ngtemplates','concat','uglify:debug','cssmin', 'string-replace','npmcopy:debug'] );
+  grunt.registerTask('buildDebug', ['htmlhint','jshint','ngtemplates','concat','uglify:debug','cssmin','copy' ,'string-replace','npmcopy:debug'] );
   grunt.registerTask('debug', ['buildDebug','run:serverWin','watch'] );
-  grunt.registerTask('deploy', ['htmlhint','jshint','ngtemplates','concat','uglify:deploy','cssmin','htmlmin','npmcopy:deploy'] );
+  grunt.registerTask('deploy', ['htmlhint','jshint','ngtemplates','concat','uglify:deploy','cssmin','copy','htmlmin','npmcopy:deploy'] );
   grunt.registerTask('default', ['deploy']);
   grunt.registerTask('cleanup', ['clean']);
 };

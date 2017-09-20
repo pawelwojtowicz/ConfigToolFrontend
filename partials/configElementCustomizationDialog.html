@@ -17,10 +17,15 @@
     <div id="templateParameterList">
         <md-virtual-repeat-container id="parameterContainer">
             <div md-virtual-repeat="configElementParameter in vm.configElementParameters" class="repeated-parameter" flex>
-                <div class="md-2-line">
-                    <label>{{configElementParameter.name}}</label><br/>
-                    <input size="50" ng-model="configElementParameter.value"> 
-                </div>     
+                <div layout="row">
+                    <div>
+                            <md-icon md-svg-src="{{vm.getIconForParamType(configElementParameter.parameterType)}}" aria-label="Parameter type"></md-icon>
+                    </div>
+                    <div class="md-2-line">
+                        <label>{{configElementParameter.name}}</label><br/>
+                        <input size="50" ng-model="configElementParameter.value" ng-disabled="configElementParameter.parameterType===1"> 
+                    </div>
+                </div>
             </div>
         </md-virtual-repeat-container>
     </div>

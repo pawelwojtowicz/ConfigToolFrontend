@@ -12,7 +12,10 @@
             <td>{{configItem.description}}</td>
             <td>{{configItem.exportType}}</td>
             <td>{{configItem.fileName}}</td>
-            <td><button ng-click="vm.showUpdateDialog(configItem.configurationItemId)">Modify</button><button ng-click="vm.deleteConfigItem(configItem.configurationItemId)">Delete</button></td>
+            <td>
+                <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showUpdateDialog(configItem.configurationItemId)"></md-icon>
+                <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteConfigItem(configItem.configurationItemId)"></md-icon>
+            </td>
         </tr>
     </table>
     <md-button class="md-primary md-raised" ng-click="vm.showAddDialog()">Add configuration item</md-button>

@@ -20,7 +20,15 @@
         </md-toolbar>
       <md-virtual-repeat-container id="vertical-container">
         <div md-virtual-repeat="item in vm.templateParameters" class="repeated-item" flex>
-          <tr><td>{{item.name}}</td><td>{{item.secondName}}</td><button ng-click="vm.showAddTemplateParameterDialog($index)">Modify</button><button ng-click="vm.deleteTemplateParameter($index)">Delete</button></tr>
+          <tr><td>
+            <md-icon md-svg-src="{{vm.getIconForParamType(item.parameterType)}}" aria-label="Parameter type"></md-icon>
+          </td> <td>{{item.name}}</td>
+            <td>{{item.secondName}}</td>
+            <td>
+                <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showAddTemplateParameterDialog($index)"></md-icon>
+                <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteTemplateParameter($index)"></md-icon>    
+            </td>
+        </tr>
         </div>
       </md-virtual-repeat-container>
     </div>

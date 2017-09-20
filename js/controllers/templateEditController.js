@@ -255,5 +255,15 @@ configurationApp.controller('templateEditController',['$routeParams',
         });
       }  
     };
+
+    vm.getIconForParamType = function(templateParameterType) {
+      console.log("I am entering - demn");
+      if ( 1 === templateParameterType) {
+        return String( "/assets/const.svg" );
+      } else if ( 2 === templateParameterType) {
+        return String( "/assets/allowed.svg" );
+      }
+      return String( "/assets/required.svg" );        
+    };
 	}]);
 }());

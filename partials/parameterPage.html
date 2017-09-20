@@ -12,8 +12,8 @@
             <td>{{parameter.configurationItem.name}}</td>
             <td>{{parameter.description}}</td>     
             <td>
-                <button ng-click="vm.showUpdateDialog(parameter.parameterId)">Modify</button>
-                <button ng-click="vm.deleteParameter(parameter.parameterId)">Delete</button>
+                <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showUpdateDialog(parameter.parameterId)"></md-icon>
+                <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteParameter(parameter.parameterId)"></md-icon>
             </td>
         </tr>
     </table>

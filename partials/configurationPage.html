@@ -7,8 +7,8 @@
             <td>{{configuration.name}}</td>
             <td>{{configuration.description}}</td>
             <td>
-                <button ng-click="vm.updateConfiguration(configuration.configurationId)">Modify</button>
-                <button ng-click="vm.deleteConfiguration(configuration.configurationId)">Delete</button>
+                <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.updateConfiguration(configuration.configurationId)"></md-icon>
+                <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteConfiguration(configuration.configurationId)"></md-icon>    
             </td>
         </tr>
     </table>

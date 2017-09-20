@@ -11,8 +11,8 @@
             <td>{{templateItem.templateStatus}}</td>
             <td>{{templateItem.licensed}}</td>
             <td>
-              <button ng-click="vm.updateTemplate(templateItem.templateId)">Modify</button>
-              <button ng-click="vm.deleteTemplate(templateItem.templateId)">Delete</button>
+                <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.updateTemplate(templateItem.templateId)"></md-icon>
+                <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteTemplate(templateItem.templateId)"></md-icon>
             </td>
         </tr>
     </table>

@@ -19,6 +19,14 @@
                         <label>Parameter Description</label>
                         <input ng-model="vm.parameter.description" type="text"/>
                 </md-input-container><br/>
+                <md-input-container>
+                        <label>Config item</label>
+                        <md-select ng-model="vm.parameter.parameterType">
+                            <md-option ng-value="1">Constant</md-option>
+                            <md-option ng-value="2">Allowed</md-option>
+                            <md-option ng-value="3">Required</md-option>                                
+                        </md-select>
+                    </md-input-container><br/>
             </span>
         </md-dialog-content>
         <md-dialog-actions class="mat-dialog-actions">
