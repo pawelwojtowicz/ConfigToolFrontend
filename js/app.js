@@ -54,6 +54,18 @@ configurationFrontend.config(['$routeProvider',
           controllerAs: 'vm',
           bindToController: true,
           replace: true      }).
+        when('/configurationgrouppage', {
+          templateUrl: 'partials/configurationGroupPage.html',
+          controller: 'configuationGroupController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
+        when('/configurationgroupeditpage/:configurationGroupId', {
+          templateUrl: 'partials/configurationGroupEdit.html',
+          controller: 'configurationGroupDialogController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
         otherwise({
           redirectTo: '/templatepage'
       });

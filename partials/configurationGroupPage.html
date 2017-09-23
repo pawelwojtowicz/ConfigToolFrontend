@@ -1,0 +1,16 @@
+<div>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Name</td><td>Description</td><td>Actions</td>
+        </tr>
+        <tr ng-repeat="configGroup in vm.configGroupList">
+            <td>{{configGroup.name}}</td>
+            <td>{{configGroup.name}}</td>
+            <td>
+                    <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.updateConfigGroup(configGroup.configurationGroupId)"></md-icon>
+                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteConfigGroup(configGroup.configurationGroupId)"></md-icon>
+            </td>
+        </tr>
+    </table>
+    <md-button class="md-primary md-raised" ng-click="vm.addNewConfigGroup()">Add Configuration Group</md-button>
+</div>

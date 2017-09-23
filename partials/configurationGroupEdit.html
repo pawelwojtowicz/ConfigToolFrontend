@@ -1,0 +1,40 @@
+<md-content layout-padding>
+    <form name="configurationGroupEditForm">
+        <md-input-container class="md-block">
+                <label>Configuration Group Name</label>
+                <input md-maxlength="30" required md-no-asterisk name="name" ng-model="vm.configGroup.name">
+        </md-input-container>
+        <md-input-container class="md-block">
+                <label>Configuration Group Description</label>
+                <input md-maxlength="200" required md-no-asterisk name="description" ng-model="vm.configGroup.description">
+        </md-input-container>
+    </form>
+    <div ng-show="vm.isValid()" layout="row" layout-xs="column" >
+        <div flex="">
+            <md-list>
+                <md-list-item class="md-1-line" ng-repeat="configuration in vm.configGroup.configurations" 
+                                                ng-click="vm.selectConfigGroupConfiguration($index)" 
+                                                ng-class="{selectedIndex: vm.selectedConfigGroupConfig===$index}">
+                    <div class="md-list-item-text" layout="column">{{configuration.name}}</div>
+                </md-list-item>
+            </md-list>
+        </div>
+        <div>
+            <button ng-click="vm.removeConfiguration()">&#9654;&#9654;</button><br/>
+            <button ng-click="vm.addConfiguration()">&#9664;&#9664;</button>
+        </div>
+        <div flex="">
+            <md-list>
+                <md-list-item class="md-1-line" ng-repeat="configuration in vm.allConfigurations" 
+                                                ng-click="vm.selectConfiguration(vm.allConfigurations.indexOf(configuration))" 
+                                                ng-class="{selectedIndex: vm.selectedConfiguration===vm.allConfigurations.indexOf(configuration)}">
+                    <div class="md-list-item-text" layout="column">{{configuration.name}}</div>
+                </md-list-item>
+            </md-list>        
+        </div>
+    </div>
+
+    <md-button ng-hide="vm.isValid()" class="md-primary md-raised" ng-click="vm.createConfiguration()">Create Configuration</md-button>
+    <md-button ng-show="vm.isValid()" class="md-primary md-raised" ng-click="vm.saveConfiguration()">Save Configuration</md-button>
+    <md-button class="md-primary md-raised" ng-click="vm.cancel()">Cancel</md-button>
+</md-content>
