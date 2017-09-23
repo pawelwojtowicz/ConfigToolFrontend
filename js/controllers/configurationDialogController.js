@@ -51,11 +51,19 @@
             };
 
             vm.saveConfiguration = function() {
-                // here save the configuration into the backend.
-            };
+                var configuration = {
+                    configurationId: vm.configurationId,
+                    baselineId: 1,
+                    name : vm.name,
+                    description:vm.description,
+                    customerId: 0
+                };
+                configurationService.saveConfiguration( configuration ).then( function ( item) {
+                    $location.url("/configurationpage");
+                });            };
 
             vm.cancel =  function() {
-                $mdDialog.cancel();
+                $location.url("/configurationpage");
             };
 
 

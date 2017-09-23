@@ -103,12 +103,12 @@
             };
 
             vm.getIconForParamType = function(templateParameterType) {
-                if ( 1 === templateParameterType) {
-                  return String( "/assets/const.svg" );
-                } else if ( 2 === templateParameterType) {
-                  return String( "/assets/allowed.svg" );
-                }
-                return String( "/assets/required.svg" );        
+              if ( 1 === templateParameterType) {
+                return String( "/assets/const.svg" );
+              } else if ( 2 === templateParameterType) {
+                return String( "/assets/allowed.svg" );
+              }
+              return String( "/assets/required.svg" );        
             };
           
 
