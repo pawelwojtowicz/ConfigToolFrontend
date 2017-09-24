@@ -1,0 +1,17 @@
+<div>
+    <table border="1" style="width:100%">
+        <tr>
+            <td>Vehicle ID</td><td>Description</td><td>Assigned Configuration Group</td><td>Actions</td>
+        </tr>
+        <tr ng-repeat="node in vm.nodes">
+            <td>{{node.nodeStringId}}</td>
+            <td>{{node.description}}</td>
+            <td>{{node.nodeConfiguration.name}}</td>
+            <td>
+                    <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.modifyNode(node.nodeStringId)"></md-icon>
+                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteNode(node.nodeStringId)"></md-icon>    
+            </td>
+        </tr>
+    </table>
+    <md-button class="md-primary md-raised" ng-click="vm.addNewNode()">Add New Vehicle</md-button>
+</div>

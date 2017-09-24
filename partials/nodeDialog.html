@@ -1,0 +1,39 @@
+<md-dialog aria-label="Parameter" style="width: 500px;">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+        <h2>{{vm.dialogTitle}}</h2>
+        <span flex=""></span>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="mat-button">
+        <span flex="">
+            <md-input-container>
+                    <label>Vehicle Identifier</label>
+                    <input ng-model="vm.node.nodeStringId" type="text"/>
+            </md-input-container>        
+            <md-input-container>
+                <label>Configuration group</label>
+                <md-select ng-model="vm.node.configurationGroupId">
+                    <md-option><em>None</em></md-option>
+                    <md-option ng-repeat="configGroup in vm.availableConfigGroups" ng-value="configGroup.configurationGroupId">{{configGroup.name}}</md-option>
+                </md-select>
+            </md-input-container><br/>
+            <md-input-container>
+                    <label>Vehicle description</label>
+                    <input ng-model="vm.node.description" type="text"/>
+            </md-input-container>
+        </span>    
+    </md-dialog-content>
+    <md-dialog-actions class="mat-dialog-actions">
+        <md-button class="mat-button" ng-click="vm.saveNode()">
+            <span class="mat-button-wrapper">Add</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+        <md-button class="mat-button" ng-click="vm.cancel()">
+            <span class="mat-button-wrapper">Cancel</span>
+            <div class="mat-button-ripple mat-ripple" md-ripple =""></div>
+            <div class="mat-button-focus-overlay"></div>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -66,6 +66,12 @@ configurationFrontend.config(['$routeProvider',
           controllerAs: 'vm',
           bindToController: true,
           replace: true      }).
+        when('/nodepage', {
+            templateUrl: 'partials/nodePage.html',
+            controller: 'nodePageController',
+            controllerAs: 'vm',
+            bindToController: true,
+            replace: true      }).
         otherwise({
           redirectTo: '/templatepage'
       });
