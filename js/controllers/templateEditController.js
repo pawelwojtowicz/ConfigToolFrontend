@@ -265,5 +265,9 @@ configurationApp.controller('templateEditController',['$routeParams',
       }
       return String( "/assets/required.svg" );        
     };
+
+    vm.isValidTemplate = function() {
+      return ( 0 !== vm.templateId );
+    };
 	}]);
 }());

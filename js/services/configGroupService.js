@@ -8,18 +8,17 @@
         vm.moduleUpdateCallbacks = [];
     
         vm.addNewConfigGroup = function (configGroup ) {
+            console.log(JSON.stringify(configGroup));
             return $q(function( resolve, reject ){
                 $http({	url: vm.url,
                         method: "POST",
                         data: configGroup,
-                        headers: {'Content-Type': 'application/json'}}).then (
-                        function( response) {
-                            resolve();
-                        } , function ()
-                        {
-                            reject();
-                        });
-                    });
+                        headers: {'Content-Type': 'application/json'}}).then (function( response) {
+                            resolve( response.data);
+                        } , function (data, status, headers, config) {
+                            reject(data, status, headers, config);
+                });
+            });
         };
 
         vm.getConfigGroupById = function( configGroupId ) {

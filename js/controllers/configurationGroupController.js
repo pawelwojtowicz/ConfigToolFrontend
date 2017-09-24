@@ -10,14 +10,18 @@
             vm.configGroupList = [];
     
             configGroupService.getAllConfigGroups().then(function( data) {
+                console.log(JSON.stringify(data));
                 vm.configGroupList = data;
             });
         
         
             vm.deleteConfigGroup = function( configGroupId )
             {
-                configGroupService.deleteConfigGroup(configGroupId);
-
+                configGroupService.deleteConfigGroup(configGroupId).then( function() {
+                    configGroupService.getAllConfigGroups().then(function( data) {
+                        vm.configGroupList = data;
+                    });                            
+                });
             };
     
             vm.addNewConfigGroup = function() {

@@ -32,11 +32,10 @@
         </div>
       </md-virtual-repeat-container>
     </div>
-    <div backgroud-color="yellow">
+    <div ng-show="vm.isValidTemplate()" backgroud-color="yellow">
             <md-tabs md-dynamic-height md-border-bottom>
                     <md-tab label="parameters">
                       <md-content class="md-padding">
-                        <h1 class="md-display-2">Parameters</h1>
                         <div layout="row" layout-xs="column" >
                           <div flex="">
                               <md-list>
