@@ -16,7 +16,7 @@
                 <md-list-item class="md-1-line" ng-repeat="configurationElement in vm.configurationElements" 
                                                 ng-click="vm.selectConfigurationElement($index)" 
                                                 ng-class="{selectedIndex: vm.selectedConfigurationElement===$index}">
-                    <div class="md-list-item-text" layout="column">{{configurationElement.template.name}}</div>
+                    <div class="md-list-item-text" layout="column">{{configurationElement.template.name}} ({{configurationElement.genericTemplatePath}})</div>
                 </md-list-item>
             </md-list>
         </div>

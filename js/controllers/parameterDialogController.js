@@ -19,6 +19,7 @@
             vm.path = "sciezka";
             vm.description = "this is a description";
             vm.configItem = {};
+            vm.configurationItemId = 0;
             vm.availableConfigItems =[];
 
             configItemService.getAllConfigItems().then( function (configItems) {
@@ -32,6 +33,7 @@
                 vm.value = parameter.value;
                 vm.unit = parameter.unit;
                 vm.path = parameter.path;
+                vm.configurationItemId = parameter.configurationItemId;
                 vm.description = parameter.description;
                 vm.configItem = parameter.configurationItem;                
             };
@@ -51,7 +53,7 @@
                     "unit": vm.unit,
                     "path": vm.path,
                     "description": vm.description,
-                    "configurationItem": vm.configItem
+                    "configurationItemId": vm.configurationItemId
                 };
                 parameterService.addParameter(newParameter).then ( function() {
                     $mdDialog.hide();

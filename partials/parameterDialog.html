@@ -29,9 +29,9 @@
                 </md-input-container>        
                 <md-input-container>
                     <label>Config item</label>
-                    <md-select ng-model="vm.configItem">
+                    <md-select ng-model="vm.configurationItemId">
                         <md-option><em>None</em></md-option>
-                        <md-option ng-repeat="configItem in vm.availableConfigItems" ng-value="configItem">{{configItem.name}}</md-option>
+                        <md-option ng-repeat="configItem in vm.availableConfigItems" ng-value="configItem.configurationItemId">{{configItem.name}}</md-option>
                     </md-select>
                 </md-input-container><br/>
                 <md-input-container>

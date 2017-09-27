@@ -10,12 +10,19 @@
             <md-input-container>
                     <label>Vehicle Identifier</label>
                     <input ng-model="vm.node.nodeStringId" type="text"/>
-            </md-input-container>        
+            </md-input-container>
             <md-input-container>
                 <label>Configuration group</label>
                 <md-select ng-model="vm.node.configurationGroupId">
                     <md-option><em>None</em></md-option>
                     <md-option ng-repeat="configGroup in vm.availableConfigGroups" ng-value="configGroup.configurationGroupId">{{configGroup.name}}</md-option>
+                </md-select>
+            </md-input-container><br/>
+            <md-input-container>
+                <label>Device</label>
+                <md-select ng-model="vm.node.deviceId">
+                    <md-option><em>None</em></md-option>
+                    <md-option ng-repeat="device in vm.devices" ng-value="device.deviceId">{{device.name}}</md-option>
                 </md-select>
             </md-input-container><br/>
             <md-input-container>

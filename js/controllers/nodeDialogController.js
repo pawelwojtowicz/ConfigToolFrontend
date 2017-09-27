@@ -5,10 +5,11 @@
     
     configurationApp.controller('nodeDialogController',['selectedNodeId',
                                                         'nodeService', 
-                                                        'configGroupService', 
+                                                        'configGroupService',
+                                                        'deviceService',
                                                         '$mdDialog',
                                                         '$mdToast',
-                                                        function(selectedNodeId , nodeService , configGroupService ,$mdDialog,$mdToast)
+                                                        function(selectedNodeId , nodeService , configGroupService,deviceService ,$mdDialog,$mdToast)
         {
             var vm=this;
             if ("" === selectedNodeId ) {
@@ -22,8 +23,15 @@
             vm.node.nodeStringId = selectedNodeId;
             vm.node.description = "";
             vm.node.configurationGroupId = 0;
+            vm.node.deviceId = 0;
 
             vm.availableConfigGroups = [];
+
+            vm.devices = [];
+
+            deviceService.getAllDevices().then( function(loadedDevices)  {
+                vm.devices = loadedDevices;
+            });
 
             configGroupService.getAllConfigGroups().then ( function( configGroups) {
                 vm.availableConfigGroups = configGroups;
