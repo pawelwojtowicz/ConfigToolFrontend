@@ -2,7 +2,7 @@
     'use strict';
 var configurationApp = angular.module('configurationApp');
 
-configurationApp.controller('nodePageController',['nodeService','$mdDialog',function( nodeService, $mdDialog )
+configurationApp.controller('nodePageController',['nodeService','$mdDialog','$location',function( nodeService, $mdDialog, $location )
 	{
         var vm = this;
         vm.nodes = [];
@@ -47,6 +47,11 @@ configurationApp.controller('nodePageController',['nodeService','$mdDialog',func
 				}
 			  });
 
+        };
+
+        vm.showExportDialog = function( nodeId ) {
+            var urlOfExportPage = "/exportconfiguration/"+ nodeId;
+            $location.url(urlOfExportPage);
         };
 	}]);
 }());

@@ -10,7 +10,8 @@
             <td>{{node.nodeConfiguration.name}}</td>
             <td>
                     <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.modifyNode(node.nodeStringId)"></md-icon>
-                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteNode(node.nodeStringId)"></md-icon>    
+                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteNode(node.nodeStringId)"></md-icon>
+                    <md-icon md-svg-src="/assets/upload.svg" aria-label="Edit " ng-click="vm.showExportDialog(node.nodeStringId)"></md-icon>                    
             </td>
         </tr>
     </table>

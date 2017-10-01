@@ -72,6 +72,12 @@ configurationFrontend.config(['$routeProvider',
             controllerAs: 'vm',
             bindToController: true,
             replace: true      }).
+        when('/exportconfiguration/:nodeId', {
+          templateUrl: 'partials/exportConfigurationPage.html',
+          controller: 'exportConfigurationPageController',
+          controllerAs: 'vm',
+          bindToController: true,
+          replace: true      }).
         otherwise({
           redirectTo: '/templatepage'
       });

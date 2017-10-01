@@ -13,6 +13,7 @@
             vm.description = "";
             vm.exportType = "";
             vm.fileName = "";
+            vm.defaultBase = 0;
 
             if ( 0 != vm.configurationItemId) {
                 vm.dialogTitle = "Modify Configuration Item";
@@ -21,7 +22,8 @@
                     vm.name = receivedConfigItem.name;
                     vm.description = receivedConfigItem.description;
                     vm.exportType = receivedConfigItem.exportType;
-                    vm.fileName = receivedConfigItem.fileName; 
+                    vm.fileName = receivedConfigItem.fileName;
+                    vm.defaultBase = receivedConfigItem.defaultBase;
                 }, function ( error ) {
                     vm.name = error.toString();
                     vm.description = "xxx";
@@ -34,7 +36,8 @@
                                          name: vm.name,
                                          description: vm.description,
                                          exportType : vm.exportType,
-                                         fileName: vm.fileName };
+                                         fileName: vm.fileName,
+                                         defaultBase: vm.defaultBase };
                 configItemService.addNewConfigItem(newConfigItem).then ( function() {
                     $mdDialog.hide();
                 });

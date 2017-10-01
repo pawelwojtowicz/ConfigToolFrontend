@@ -19,6 +19,9 @@
                     <label>Export type</label>
                     <input ng-model="vm.exportType" type="text"/>
             </md-input-container><br/>
+            <md-checkbox ng-model="vm.defaultBase" aria-label="Base default"  ng-true-value="1" ng-false-value="0" >
+                Default base
+              </md-checkbox><br/>
             <md-input-container>
                     <label>fileName</label>
                     <input ng-model="vm.fileName" type="text"/>
