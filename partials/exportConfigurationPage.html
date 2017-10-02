@@ -1,22 +1,19 @@
 <div>
-    Exoport the configuration for the node of {{vm.node.nodeStringId}} of device type {{vm.node.device.name}}.
-
-    The device hosts following modules:
-    <table border="1" style="width:100%">
-            <tr>
-                <td>Module </td>
-                <td>Configuration item</td>
-                <td>CI</td>
-                <td>Action</td>
-            </tr>
-            <tr ng-repeat="module in vm.node.device.deviceModules">
-                <td>{{module.name}}</td>
-                <td><div ng-repeat="configItem in module.configItems">{{configItem.name}}</div></td>
-                <td></td>
-                <td>
-                    <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showUpdateDialog(configItem.configurationItemId)"></md-icon>
-                    <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteConfigItem(configItem.configurationItemId)"></md-icon>
-                </td>
-            </tr>
-        </table>
-    </div>    
+Exoport the configuration for the node of {{vm.node.nodeStringId}} of device type {{vm.node.device.name}}.<br/>
+The device hosts following modules:
+<hr>
+<div ng-repeat="module in vm.node.device.deviceModules">{{module.name}}
+<table border="1" style="width:100%">
+    <tr><td>Configuration item</td><td>CI</td><td>Action</td></tr>
+    <tr ng-repeat="configItem in module.configItems">
+        <td>{{configItem.name}}</td>
+        <td><input type="text" name="fname"></td>
+        <td>
+            <md-icon md-svg-src="/assets/upload.svg" aria-label="Edit " ng-click="vm.exportConfigItem(vm.node.nodeStringId,configItem.configurationItemId)">
+            </md-icon>
+        </td>
+    </tr>
+</table>
+<hr>
+</div>
+</div>
