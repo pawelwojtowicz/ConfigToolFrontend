@@ -23,7 +23,7 @@
           <tr><td>
             <md-icon md-svg-src="{{vm.getIconForParamType(item.parameterType)}}" aria-label="Parameter type"></md-icon>
           </td> <td>{{item.name}}</td>
-            <td>{{item.secondName}}</td>
+            <td>=={{item.value}}</td>
             <td>
                 <md-icon md-svg-src="/assets/edit.svg" aria-label="Edit " ng-click="vm.showAddTemplateParameterDialog($index)"></md-icon>
                 <md-icon md-svg-src="/assets/delete.svg" aria-label="Edit " ng-click="vm.deleteTemplateParameter($index)"></md-icon>    
@@ -42,7 +42,7 @@
                                   <md-list-item class="md-1-line" ng-repeat="assignedParameter in vm.templateElements" 
                                                                   ng-click="vm.selectTemplateElement($index)" 
                                                                   ng-class="{selectedIndex: vm.selectedAssociatedParameter===$index}">
-                                      <div class="md-list-item-text" layout="column">{{assignedParameter.parameter.name}}={{assignedParameter.templateParameter.name}}</div>
+                                      <div class="md-list-item-text" layout="column">{{assignedParameter.parameter.path}}.{{assignedParameter.parameter.name}}={{assignedParameter.templateParameter.name}}</div>
                                   </md-list-item>
                               </md-list>
                           </div>
@@ -55,7 +55,7 @@
                                   <md-list-item class="md-1-line" ng-repeat="configItem in vm.availableParameters" 
                                                                   ng-click="vm.selectParameter(vm.availableParameters.indexOf(configItem))" 
                                                                   ng-class="{selectedIndex: vm.selectedParameter===$index}">
-                                      <div class="md-list-item-text" layout="column">{{configItem.name}}</div>
+                                      <div class="md-list-item-text" layout="column">{{configItem.path}}.{{configItem.name}}</div>
                                   </md-list-item>
                               </md-list>        
                           </div>

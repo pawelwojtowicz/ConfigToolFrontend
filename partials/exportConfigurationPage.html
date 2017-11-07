@@ -4,10 +4,9 @@ The device hosts following modules:
 <hr>
 <div ng-repeat="module in vm.node.device.deviceModules">{{module.name}}
 <table border="1" style="width:100%">
-    <tr><td>Configuration item</td><td>CI</td><td>Action</td></tr>
+    <tr><td>Configuration items for CI: <input type="text" name="fname"></td><td>Action</td></tr>
     <tr ng-repeat="configItem in module.configItems">
-        <td>{{configItem.name}}</td>
-        <td><input type="text" name="fname"></td>
+        <td><strong>{{configItem.fileName}}</strong></td>
         <td>
             <md-icon md-svg-src="/assets/upload.svg" aria-label="Edit " ng-click="vm.exportConfigItem(vm.node.nodeStringId,configItem.configurationItemId)">
             </md-icon>

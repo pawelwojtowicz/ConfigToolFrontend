@@ -2,10 +2,10 @@
     <md-toolbar>
         <div class="md-toolbar-tools">
         <h2>{{vm.dialogTitle}}</h2>
-        <span flex=""></span>
         </div>
     </md-toolbar>
     <md-dialog-content class="mat-button">
+        <span flex="">The parameter: <br/><br/><strong>{{vm.parameter.path}}.{{vm.parameter.name}} </strong><br/><br/>from <br/><br/><strong>{{vm.parameter.configurationItem.name}}</strong><br/><br/> will be overwritten by:</span>
         <span flex="">
             <md-select ng-model="vm.selectedTemplateParameterId">
                 <md-option><em>None</em></md-option>
